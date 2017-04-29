@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView5" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner" />
+
+    <TextView
+        android:text="@string/dialog_hms_ip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/dh_tv_ip_header"
+        android:textSize="18sp"
+        android:textStyle="normal|bold"
+        android:textAlignment="center" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/dh_et_ip"
+        android:textSize="18sp"
+        android:hint="@string/dialog_hms_ip" />
+
+    <TextView
+        android:text="@string/dialog_hms_script_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/dh_tv_location_header"
+        android:textSize="18sp"
+        android:textStyle="normal|bold"
+        android:textAlignment="center" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/dh_et_location"
+        android:textSize="18sp"
+        android:hint="@string/dialog_hms_script_location" />
+
+    <TextView
+        android:text="@string/dialog_hms_script_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/dh_tv_name_header"
+        android:textSize="18sp"
+        android:textStyle="normal|bold"
+        android:textAlignment="center" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/dh_et_name"
+        android:hint="@string/dialog_hms_script_name" />
+</LinearLayout>

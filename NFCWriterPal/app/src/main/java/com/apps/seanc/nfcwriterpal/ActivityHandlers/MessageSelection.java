@@ -24,6 +24,8 @@ import com.apps.seanc.nfcwriterpal.R;
 import com.apps.seanc.nfcwriterpal.Tools.DialogBoxHandler;
 import com.apps.seanc.nfcwriterpal.Tools.NdefRecordParcel;
 
+import java.nio.charset.Charset;
+
 public class MessageSelection extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -32,9 +34,8 @@ public class MessageSelection extends AppCompatActivity
     private Button webpage, text, email, phone, location, app;
     private static AlertDialog dialogBox;
     private static String uriString;
+    private static String mimeString;
     private ApplicationInfo appInfo;
-
-    private boolean writeMode;
 
     private DialogBoxHandler dialogBoxHandler;
 
@@ -64,51 +65,8 @@ public class MessageSelection extends AppCompatActivity
 
         dialogBoxHandler = new DialogBoxHandler(MessageSelection.this, this);
 
-        writeMode = false;
         setOnClickListeners();
-        //parcel = Parcel.obtain();
     }
-
-    /*@Override
-    protected void onNewIntent(Intent intent){
-        Log.d(TAG, "onNewIntent");
-        if(NfcAdapter.ACTION_TAG_DISCOVERED.equals(intent.getAction())){
-            Log.d(TAG, "A tag was scanned");
-
-            if(writeMode){
-                try{
-                    vibrate();
-
-
-                    Tag mytag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
-                    Ndef ndef = Ndef.get(mytag);
-
-                    Uri uri = Uri.parse(uriString);
-                    NdefRecord ndefRecord = NdefRecord.createUri(uri);
-
-                    NdefRecordParcel ndefRecordParcel = new NdefRecordParcel(ndefRecord);
-
-
-                    /*NdefMessage message = new NdefMessage(recordNFC );
-
-                    ndef.connect();
-                    ndef.writeNdefMessage(message);
-                    ndef.close();
-
-
-                    Intent returnToMain = new Intent(this, MainActivity.class);
-                    intent.putExtra("ndefRecord", ndefRecordParcel);
-                    intent.putExtra("recordType", recordType);
-                    setResult(RESULT_OK, returnToMain);
-                    dialogBox.dismiss();
-                    finish();
-
-                } catch (Exception e){
-                    Log.d(TAG, "Exception caught: ", e);
-                }
-            }
-        }
-    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -205,7 +163,11 @@ public class MessageSelection extends AppCompatActivity
     }
 
     public void setUriString(String uri){
-        uriString=uri;
+        uriString = uri;
+    }
+
+    public void setMimeString(String mime){
+        mimeString = mime;
     }
 
     public void setAppInfo(ApplicationInfo appInfo){
@@ -242,21 +204,18 @@ public class MessageSelection extends AppCompatActivity
                 } catch (Exception e){
                     Log.d(TAG, e.toString());
                 }
+                break;
+            case 3:
+                try{
+                    String mimeString = "http://192.168.0.241/functions/disarm.php";
+                    NdefRecord appRecord = new NdefRecord(
+                            NdefRecord.TNF_MIME_MEDIA ,
+                            "application/com.apps.seanc.nfcwriterpal".getBytes(Charset.forName("US-ASCII")),
+                            new byte[0], mimeString.getBytes(Charset.forName("US-ASCII")));
+                } catch (Exception e) {
+                    Log.d(TAG, e.toString());
+                }
         }
-    }
-
-    @Override
-    public void onPause(){
-        Log.d(TAG, "onPause");
-        super.onPause();
-        //disableForegroundMode();
-    }
-
-    @Override
-    public void onResume(){
-        Log.d(TAG, "onResume");
-        super.onResume();
-        //enableForeGroundMode();
     }
 
     @Override
@@ -266,7 +225,6 @@ public class MessageSelection extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            //disableForegroundMode();
             super.onBackPressed();
 
             Intent returnToMain = new Intent(this, MainActivity.class);
@@ -275,27 +233,5 @@ public class MessageSelection extends AppCompatActivity
 
     }
 
-
-    /*//ForeGround mode gives the current active application priority for reading scanned tags
-    public void enableForeGroundMode(){
-        Log.d(TAG, "enableForeGroundMode");
-        IntentFilter tagDetected = new IntentFilter(NfcAdapter.ACTION_TAG_DISCOVERED); //Filter for finding tags
-        IntentFilter[] writeTagFilters = new IntentFilter[] {tagDetected};
-        nfcAdpt.enableForegroundDispatch(this, nfcPendingIntent, writeTagFilters,null);
-    }
-
-    //Stops this application from dealing with all tags when paused
-    public void disableForegroundMode(){
-        Log.d(TAG, "disableForegroundMode");
-        nfcAdpt.disableForegroundDispatch(this);
-    }*/
-
-
-    private void vibrate() {
-        Log.d(TAG, "vibrate");
-
-        Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE) ;
-        vibe.vibrate(500);
-    }
 
 }

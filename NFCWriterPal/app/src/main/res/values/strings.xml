@@ -59,6 +59,17 @@
     <string name="dialog_location_longitude">Longitude</string>
     <string name="dialog_location_latitude">Latitude</string>
     <string name="dialog_location_use_current">Use Current</string>
+    <string name="dialog_hms_ip">Enter HMS IP Address</string>
+    <string name="dialog_hms_script_location">Enter script location (e.g /functions/security)</string>
+    <string name="dialog_hms_script_name">Enter Script Name</string>
+
+    <string name="ms_webpage">Webpage</string>
+    <string name="ms_email">Email</string>
+    <string name="ms_phone">Phone Number</string>
+    <string name="ms_sms">SMS</string>
+    <string name="ms_app">App</string>
+    <string name="ms_location">Location</string>
+    <string name="ms_hms">Home Management System</string>
 
 
     <string name="title_activity_write">WriteActivity</string>

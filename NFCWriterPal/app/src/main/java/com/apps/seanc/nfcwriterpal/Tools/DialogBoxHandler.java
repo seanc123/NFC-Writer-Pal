@@ -236,6 +236,33 @@ public class DialogBoxHandler extends ListActivity{
         return appDialogBuilder.create();
     }
 
+    private Dialog hmsDialog(){
+
+        AlertDialog.Builder hmsDialogBuilder = new AlertDialog.Builder(context);
+        LayoutInflater inflater = LayoutInflater.from(context);
+        hmsDialogBuilder.setView(inflater.inflate(R.layout.dialog_hms, null))
+                .setNegativeButton(context.getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        final AlertDialog hmsDialog = hmsDialogBuilder.create();
+
+        hmsDialog.setButton(DialogInterface.BUTTON_POSITIVE, context.getString(R.string.enter), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                EditText ipAddress = (EditText) hmsDialog.findViewById(R.id.dh_et_ip);
+                EditText scriptLocation = (EditText) hmsDialog.findViewById(R.id.dh_et_location);
+                EditText scriptName = (EditText) hmsDialog.findViewById(R.id.dh_et_name);
+                Log.d(TAG, "hms:" + ipAddress.getText().toString() + "?subject=" + scriptLocation.getText().toString() + "&body=" + scriptName.getText().toString());
+                ms.setMimeString("hms:" + ipAddress.getText().toString() + scriptLocation.getText().toString() + "/" + scriptName.getText().toString());
+                ms.returnWithResult(3);
+                dialog.cancel();
+            }
+        });
+        return hmsDialog;
+
+    }
+
     private List<ApplicationInfo> checkForLaunchIntent(List<ApplicationInfo> list) {
         ArrayList<ApplicationInfo> applist = new ArrayList<ApplicationInfo>();
         for (ApplicationInfo info : list) {
@@ -254,7 +281,6 @@ public class DialogBoxHandler extends ListActivity{
     public Dialog writeDialog(){
 
         TextView title = new TextView(context);
-// You Can Customise your Title here
         title.setText("Tap Device Off NFC Tag");
         title.setBackgroundColor(Color.DKGRAY);
         title.setPadding(10, 10, 10, 10);
