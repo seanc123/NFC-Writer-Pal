@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_height="match_parent"
+            android:id="@+id/record_no"
+            android:textAlignment="center"
+            android:layout_column="0"
+            android:layout_row="0"
+            android:layout_rowSpan="3"
+            android:layout_rowWeight="3"
+            android:textStyle="normal|bold"
+            android:layout_width="50dp" />
+
+        <TextView
+            android:text="@string/record_size"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/record_size_title"
+            android:textStyle="normal|bold"
+            android:layout_column="1"
+            android:layout_row="0" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/record_size"
+            android:layout_row="0"
+            android:layout_column="2" />
+
+        <TextView
+            android:text="@string/record_type"
+            android:layout_height="wrap_content"
+            android:id="@+id/record_type_title"
+            android:textStyle="normal|bold"
+            android:layout_width="60dp"
+            android:layout_column="1"
+            android:layout_row="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/record_type"
+            android:layout_row="1"
+            android:layout_column="2" />
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/record_additional_title"
+            android:layout_column="1"
+            android:layout_row="3"
+            android:textStyle="normal|bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/record_additional_data" />
+
+    </GridLayout>
+
+</LinearLayout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_write"
+            android:icon="@drawable/ic_menu_write"
+            android:title="Write" />
+        <item
+            android:id="@+id/nav_read"
+            android:icon="@drawable/ic_menu_read"
+            android:title="Read" />
+        <item
+            android:id="@+id/nav_format"
+            android:icon="@drawable/ic_menu_wipe"
+            android:title="Format" />
+        <item
+            android:id="@+id/nav_saved_functions"
+            android:icon="@drawable/ic_menu_saved_functions"
+            android:title="Saved Functions" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Share" />
+            <item
+                android:id="@+id/nav_contact"
+                android:icon="@drawable/ic_menu_contact"
+                android:title="Contact" />
+        </menu>
+    </item>
+
+</menu>
