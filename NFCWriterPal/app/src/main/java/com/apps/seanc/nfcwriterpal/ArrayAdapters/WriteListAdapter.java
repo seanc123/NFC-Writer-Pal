@@ -132,12 +132,18 @@ public class WriteListAdapter extends ArrayAdapter<NdefRecord> {
 
                 } else if (ndefToolRecord instanceof MimeRecord){
                     recordType.setText(ndefToolRecord.getClass().getSimpleName());
-                    MimeRecord mimeRecord = (MimeRecord) ndefToolRecord;
-                    String payload = mimeRecord.toString();
 
-                    Log.d(TAG, "Payload = " + payload);
+                    String payloadString = new String(record.getPayload());
+                    Log.d(TAG, "Payload = " + record.getPayload().toString());
                     varOneHeader.setText("Payload");
-                    varOne.setText(payload);
+                    varOne.setText(payloadString);
+
+
+                    varTwo.setVisibility(View.GONE);
+                    varThree.setVisibility(View.GONE);
+                    varTwoHeader.setVisibility(View.GONE);
+                    varThreeHeader.setVisibility(View.GONE);
+
                 } /*else if (ndefToolRecord instanceof SmartPosterRecord){
                     recordType.setText(ndefToolRecord.getClass().getSimpleName());
 

@@ -42,6 +42,7 @@ public class HMSManagerActivity extends Activity {
             }
 
             try{
+                msgs[0].getRecords()[0].getPayload();
                 byte[] payload = msgs[0].getRecords()[0].getPayload();
 
                 String payloadString = new String(payload);
