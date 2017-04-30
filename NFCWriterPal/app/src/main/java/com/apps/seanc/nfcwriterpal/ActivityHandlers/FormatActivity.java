@@ -69,7 +69,7 @@ public class FormatActivity extends AppCompatActivity
         formatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                resultText.clearComposingText();
+                resultText.setText("");
                 formatDialog = dialogBoxHandler.tapTagDialog();
                 formatDialog.show();
             }
@@ -130,6 +130,10 @@ public class FormatActivity extends AppCompatActivity
 
                     try {
                         if (!nfcTag.isWritable()) {
+                            resultText.setText("Tag is not writable");
+                            wipeDialog.dismiss();
+                            wipeDialog = null;
+
                             Log.d(TAG, "Tag is not writeable");
                         } else {
 
