@@ -130,10 +130,15 @@ public class WriteListAdapter extends ArrayAdapter<NdefRecord> {
                     Log.d(TAG, "Uri Record Found");
                     setSnippetFields(ndefToolRecord);
 
-                } /*else if (ndefToolRecord instanceof MimeRecord){
+                } else if (ndefToolRecord instanceof MimeRecord){
                     recordType.setText(ndefToolRecord.getClass().getSimpleName());
+                    MimeRecord mimeRecord = (MimeRecord) ndefToolRecord;
+                    String payload = mimeRecord.toString();
 
-                } else if (ndefToolRecord instanceof SmartPosterRecord){
+                    Log.d(TAG, "Payload = " + payload);
+                    varOneHeader.setText("Payload");
+                    varOne.setText(payload);
+                } /*else if (ndefToolRecord instanceof SmartPosterRecord){
                     recordType.setText(ndefToolRecord.getClass().getSimpleName());
 
                 }*/

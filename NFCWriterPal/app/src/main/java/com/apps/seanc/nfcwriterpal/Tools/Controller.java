@@ -35,7 +35,6 @@ public class Controller {
     // Sets request url to the arm php script
     // Creates and executes task with arm script request
     public void apacheHttp(String httpURL){
-        //String URL = "http://192.168.0.241/functions/run_pic.php";
         task = new apacheTask(httpURL);
         task.execute((Void) null);
     }

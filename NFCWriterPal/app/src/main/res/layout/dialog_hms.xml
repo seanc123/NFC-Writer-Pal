@@ -4,15 +4,18 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:text="TextView"
+        android:text="@string/dialog_http_type"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView5" />
+        android:id="@+id/dh_tv_http_header"
+        android:textSize="18sp"
+        android:textStyle="normal|bold"
+        android:textAlignment="center" />
 
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/spinner" />
+        android:id="@+id/dh_spinr_http" />
 
     <TextView
         android:text="@string/dialog_hms_ip"
@@ -26,7 +29,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:inputType="numberDecimal"
         android:ems="10"
         android:id="@+id/dh_et_ip"
         android:textSize="18sp"

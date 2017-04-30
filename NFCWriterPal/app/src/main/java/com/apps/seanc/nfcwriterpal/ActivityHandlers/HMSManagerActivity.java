@@ -49,12 +49,16 @@ public class HMSManagerActivity extends Activity {
 
 
                 Toast.makeText(HMSManagerActivity.this, payloadString, Toast.LENGTH_LONG).show();
-                Log.d(TAG, "Running Apache Http");
-                controller.apacheHttp(payloadString);
-                /*Log.d(TAG, "Running Ok Http");
+
+                /*Log.d(TAG, "Running Apache Http");
+                controller.apacheHttp(payloadString);*/
+
+                Log.d(TAG, "Running Ok Http");
                 controller.okHttp(payloadString);
-                Log.d(TAG, "Running timeout task");
+
+                /*Log.d(TAG, "Running timeout task");
                 controller.timeoutHttp(payloadString);*/
+
                 this.finishAffinity();
             } catch(Exception e){
                 Log.d(TAG, e.toString());
@@ -62,46 +66,5 @@ public class HMSManagerActivity extends Activity {
         }
 
     }
-
-    //ForeGround mode gives the current active application priority for reading scanned tags
-    /*public void enableForeGroundMode(){
-        Log.d(TAG, "enableForeGroundMode");
-        IntentFilter tagDetected = new IntentFilter(NfcAdapter.ACTION_TAG_DISCOVERED); //Filter for finding tags
-        IntentFilter[] writeTagFilters = new IntentFilter[] {tagDetected};
-        nfcAdpt.enableForegroundDispatch(this, nfcPendingIntent, writeTagFilters,null);
-    }
-
-    //Stops this application from dealing with all tags when paused
-    public void disableForegroundMode(){
-        Log.d(TAG, "disableForegroundMode");
-        nfcAdpt.disableForegroundDispatch(this);
-    }
-
-    @Override
-    public void onPause(){
-        Log.d(TAG, "onPause");
-        super.onPause();
-        disableForegroundMode();
-    }
-
-    @Override
-    public void onResume(){
-        Log.d(TAG, "onResume");
-        super.onResume();
-        enableForeGroundMode();
-    }*/
-
-    /*//Get the Text Encoding
-                String textEncoding = ((payload[0] & 0200) == 0) ? "UTF-8" : "UTF-16";
-
-                //Get the Language Code
-                int languageCodeLength = payload[0] & 0077;
-                String languageCode = new String(payload, 1, languageCodeLength, "US-ASCII");
-
-                //Get the Text
-                String text = new String(payload, languageCodeLength + 1, payload.length - languageCodeLength - 1, textEncoding);
-
-                TextRecord textR = new TextRecord(text, languageCode);
-                Log.d(TAG, "TextR string = " + textR.getText() + " Locale = " + textR.getLocale() + " text = " + text);*/
 
 }
