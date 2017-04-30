@@ -2,8 +2,6 @@ package com.apps.seanc.nfcwriterpal.Tools;
 
 import android.app.Dialog;
 import android.app.ListActivity;
-import android.app.ProgressDialog;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.ApplicationInfo;
@@ -11,7 +9,6 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationManager;
-import android.os.AsyncTask;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.Log;
@@ -21,10 +18,8 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.apps.seanc.nfcwriterpal.ArrayAdapters.ApplicationAdapter;
 import com.apps.seanc.nfcwriterpal.R;
@@ -43,7 +38,6 @@ public class DialogBoxHandler extends ListActivity{
 
 
     private PackageManager packageManager = null;
-    private List<ApplicationInfo> applist = null;
     private ApplicationAdapter appAdapter = null;
 
     private static final String TAG = DialogBoxHandler.class.getName();
@@ -309,7 +303,8 @@ public class DialogBoxHandler extends ListActivity{
 
         appDialogBuilder.setTitle("Select An App:");
 
-        applist = checkForLaunchIntent(packageManager.getInstalledApplications(PackageManager.GET_META_DATA));
+
+        List<ApplicationInfo> applist = checkForLaunchIntent(packageManager.getInstalledApplications(PackageManager.GET_META_DATA));
 
         Collections.sort(applist, new Comparator<ApplicationInfo>() {
             public int compare(ApplicationInfo appOne, ApplicationInfo appTwo) {
@@ -338,10 +333,9 @@ public class DialogBoxHandler extends ListActivity{
 
     public void hmsDialog(){
 
-
-
         final AlertDialog.Builder hmsDialogBuilder = new AlertDialog.Builder(context);
         LayoutInflater inflater = LayoutInflater.from(context);
+
         hmsDialogBuilder.setView(inflater.inflate(R.layout.dialog_hms, null))
                 .setNegativeButton(context.getString(R.string.cancel), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
@@ -356,34 +350,67 @@ public class DialogBoxHandler extends ListActivity{
                 });
         final AlertDialog hmsDialog = hmsDialogBuilder.create();
 
+        hmsDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+
+            @Override
+            public void onShow(DialogInterface dialog) {
+                String[] httpTypes = new String[]{context.getString(R.string.http),context.getString(R.string.https)};
+                final Spinner httpSpinner = (Spinner) hmsDialog.findViewById(R.id.dh_spinr_http);
+
+                ArrayAdapter<String> httpAdapter = new ArrayAdapter<String>(context, R.layout.support_simple_spinner_dropdown_item, httpTypes);
+                httpAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+
+                httpSpinner.setAdapter(httpAdapter);
+
+                Button button = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE);
+                button.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View view) {
+                        EditText ipAddress = (EditText) hmsDialog.findViewById(R.id.dh_et_ip);
+                        EditText scriptLocation = (EditText) hmsDialog.findViewById(R.id.dh_et_location);
+                        EditText scriptName = (EditText) hmsDialog.findViewById(R.id.dh_et_name);
+
+
+                        String httpSelected = "";
+                        if(httpSpinner.getSelectedItemPosition()==0){
+                            httpSelected = "http://";
+                        } else if(httpSpinner.getSelectedItemPosition() == 1){
+                            httpSelected = "https://";
+                        }
+
+                        if(TextUtils.isEmpty(ipAddress.getText().toString())
+                                && TextUtils.isEmpty(scriptName.getText().toString())){
+                            ipAddress.setError(context.getString(R.string.error_ip));
+                            scriptName.setError(context.getString(R.string.error_script));
+                        } else if(TextUtils.isEmpty(ipAddress.getText().toString())){
+                            ipAddress.setError(context.getString(R.string.error_ip));
+                        } else if(TextUtils.isEmpty(scriptName.getText().toString())){
+                            scriptName.setError(context.getString(R.string.error_script));
+                        } else if(TextUtils.isEmpty(scriptLocation.getText().toString())){
+                            Log.d(TAG, httpSelected + ipAddress.getText().toString() + "/" + scriptName.getText().toString());
+                            ms.setMimeString(httpSelected + ipAddress.getText().toString() + "/" + scriptName.getText().toString());
+                            ms.returnWithResult(3);
+                            hmsDialog.cancel();
+                        } else {
+                            Log.d(TAG, httpSelected + ipAddress.getText().toString() + scriptLocation.getText().toString() + "/" + scriptName.getText().toString());
+                            ms.setMimeString(httpSelected + ipAddress.getText().toString() + scriptLocation.getText().toString() + "/" + scriptName.getText().toString());
+                            ms.returnWithResult(3);
+                            hmsDialog.cancel();
+                        }
+
+                    }
+                });
+
+            }
+        });
+
         hmsDialog.show();
 
         hmsDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText ipAddress = (EditText) hmsDialog.findViewById(R.id.dh_et_ip);
-                EditText scriptLocation = (EditText) hmsDialog.findViewById(R.id.dh_et_location);
-                EditText scriptName = (EditText) hmsDialog.findViewById(R.id.dh_et_name);
-                Spinner httpSpinner = (Spinner) hmsDialog.findViewById(R.id.dh_spinr_http);
 
-                String[] httpTypes = new String[]{context.getString(R.string.http),context.getString(R.string.https)};
-
-
-                ArrayAdapter<String> httpAdapter = new ArrayAdapter<String>(hmsDialogBuilder.getContext(), R.layout.support_simple_spinner_dropdown_item, httpTypes);
-                httpAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-
-                httpSpinner.setAdapter(httpAdapter);
-
-                String httpSelected = "";
-                if(httpSpinner.getSelectedItemPosition()==0){
-                    httpSelected = "http://";
-                } else if(httpSpinner.getSelectedItemPosition() == 1){
-                    httpSelected = "https://";
-                }
-                Log.d(TAG, "hms:" + httpSelected + ipAddress.getText().toString() + scriptLocation.getText().toString() + "/" + scriptName.getText().toString());
-                ms.setMimeString("http://" + ipAddress.getText().toString() + scriptLocation.getText().toString() + "/" + scriptName.getText().toString());
-                ms.returnWithResult(3);
-                hmsDialog.cancel();
 
             }
         });

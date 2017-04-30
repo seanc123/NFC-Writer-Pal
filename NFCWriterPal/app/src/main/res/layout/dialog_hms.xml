@@ -29,7 +29,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
+        android:inputType="textNoSuggestions"
         android:ems="10"
         android:id="@+id/dh_et_ip"
         android:textSize="18sp"
@@ -47,7 +47,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:inputType="text|textNoSuggestions"
         android:ems="10"
         android:id="@+id/dh_et_location"
         android:textSize="18sp"
@@ -65,7 +65,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:inputType="text|textNoSuggestions"
         android:ems="10"
         android:id="@+id/dh_et_name"
         android:hint="@string/dialog_hms_script_name" />
