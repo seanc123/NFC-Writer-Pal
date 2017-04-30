@@ -37,15 +37,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ActivityHandlers.AppSelection"
-            android:label="@string/title_activity_app_selection"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name=".ActivityHandlers.ReadActivity"
             android:label="@string/title_activity_read"
             android:parentActivityName=".ActivityHandlers.MainActivity"
