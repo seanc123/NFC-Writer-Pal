@@ -34,7 +34,6 @@ public class MessageSelection extends AppCompatActivity
     private static final String TAG = MessageSelection.class.getName();
 
     private Button webpage, text, email, phone, location, app, hms;
-    private static AlertDialog dialogBox;
     private static String uriString;
     private static String mimeString;
     private ApplicationInfo appInfo;
@@ -131,50 +130,43 @@ public class MessageSelection extends AppCompatActivity
 
         webpage.setOnClickListener(new View.OnClickListener()  {
             public void onClick(View view){
-                dialogBox = (AlertDialog) dialogBoxHandler.webpageDialog();
-                //dialogBox.show();
+                dialogBoxHandler.webpageDialog();
             }
         });
 
         phone.setOnClickListener(new View.OnClickListener()  {
             public void onClick(View view){
-                dialogBox = (AlertDialog) dialogBoxHandler.phoneCallDialog();
-                //dialogBox.show();
+                dialogBoxHandler.phoneCallDialog();
             }
         });
 
         text.setOnClickListener(new View.OnClickListener()  {
             public void onClick(View view){
-                dialogBox = (AlertDialog) dialogBoxHandler.smsDialog();
-                //dialogBox.show();
+                dialogBoxHandler.smsDialog();
             }
         });
 
         email.setOnClickListener(new View.OnClickListener()  {
             public void onClick(View view){
-                dialogBox = (AlertDialog) dialogBoxHandler.emailDialog();
-                //dialogBox.show();
+                dialogBoxHandler.emailDialog();
             }
         });
 
         location.setOnClickListener(new View.OnClickListener()  {
             public void onClick(View view){
-                dialogBox = (AlertDialog) dialogBoxHandler.locationDialog();
-                //dialogBox.show();
+                dialogBoxHandler.locationDialog();
             }
         });
 
         app.setOnClickListener(new View.OnClickListener()  {
             public void onClick(View view){
-                dialogBox = (AlertDialog) dialogBoxHandler.appDialog();
-                dialogBox.show();
+                dialogBoxHandler.appDialog();
             }
         });
 
         hms.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                dialogBox = (AlertDialog) dialogBoxHandler.hmsDialog();
-                //dialogBox.show();
+                dialogBoxHandler.hmsDialog();
             }
         });
 
@@ -204,7 +196,6 @@ public class MessageSelection extends AppCompatActivity
                     returnToWrite.putExtra("ndefRecord", ndefRecordParcel);
                     setResult(RESULT_OK, returnToWrite);
 
-                    dialogBox.dismiss();
                     finish();
 
                 } catch (Exception e) {
@@ -218,7 +209,6 @@ public class MessageSelection extends AppCompatActivity
                     Intent returnToWrite = new Intent(this, MainActivity.class);
                     returnToWrite.putExtra("ndefRecord", ndefRecordParcel);
                     setResult(RESULT_OK, returnToWrite);
-                    dialogBox.dismiss();
                     finish();
                 } catch (Exception e){
                     Log.d(TAG, e.toString());
@@ -226,7 +216,6 @@ public class MessageSelection extends AppCompatActivity
                 break;
             case 3:
                 try{
-                    //String mimeString = "http://192.168.0.241/functions/disarm.php";
                     NdefRecord mimeRecord = new NdefRecord(
                             NdefRecord.TNF_MIME_MEDIA ,
                             "application/com.apps.seanc.nfcwriterpal".getBytes(Charset.forName("US-ASCII")),
@@ -238,7 +227,6 @@ public class MessageSelection extends AppCompatActivity
                     returnToWrite.putExtra("ndefRecord", ndefRecordParcel);
                     setResult(RESULT_OK, returnToWrite);
 
-                    dialogBox.dismiss();
                     finish();
                 } catch (Exception e) {
                     Log.d(TAG, e.toString());

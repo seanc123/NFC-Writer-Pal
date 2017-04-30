@@ -63,11 +63,8 @@ public class DialogBoxHandler extends ListActivity{
     }
 
 
-    public AlertDialog webpageDialog() {
-
-        final boolean cancel = false;
+    public void webpageDialog() {
         AlertDialog.Builder webpageDialogBuilder = new AlertDialog.Builder(context);
-        webpageDialogBuilder.setCancelable(false);
         LayoutInflater inflater = LayoutInflater.from(context);
         webpageDialogBuilder.setView(inflater.inflate(R.layout.dialog_webpage, null))
                 .setNegativeButton(context.getString(R.string.cancel), new DialogInterface.OnClickListener() {
@@ -88,7 +85,6 @@ public class DialogBoxHandler extends ListActivity{
         webpageDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 EditText webpageInput = (EditText) webpageDialog.findViewById(R.id.dw_et_webpage_address);
                 if("".equals(webpageInput.getText().toString().trim())){
                     webpageInput.setError(context.getString(R.string.error_web_required));
@@ -98,14 +94,11 @@ public class DialogBoxHandler extends ListActivity{
                     ms.returnWithResult(1);
                     webpageDialog.dismiss();
                 }
-
             }
         });
-
-        return webpageDialog;
     }
 
-    public Dialog phoneCallDialog() {
+    public void phoneCallDialog() {
         AlertDialog.Builder phoneDialogBuilder = new AlertDialog.Builder(context);
         LayoutInflater inflater = LayoutInflater.from(context);
         phoneDialogBuilder.setView(inflater.inflate(R.layout.dialog_phonecall, null))
@@ -137,23 +130,9 @@ public class DialogBoxHandler extends ListActivity{
                 }
             }
         });
-
-//        phonecallDialog.setButton(DialogInterface.BUTTON_POSITIVE, context.getString(R.string.enter), new DialogInterface.OnClickListener() {
-//            public void onClick(DialogInterface dialog, int id) {
-//                EditText phoneNumber = (EditText) phonecallDialog.findViewById(R.id.dp_et_phone_number);
-//                if(TextUtils.isEmpty(phoneNumber.getText().toString())){
-//                    phoneNumber.setError(context.getString(R.string.error_phone_required));
-//                } else {
-//                    ms.setUriString("tel:" + phoneNumber.getText().toString());
-//                    ms.returnWithResult(1);
-//                    dialog.cancel();
-//                }
-//            }
-//        });
-        return phonecallDialog;
     }
 
-    public Dialog smsDialog() {
+    public void smsDialog() {
         AlertDialog.Builder smsDialogBuilder = new AlertDialog.Builder(context);
         LayoutInflater inflater = LayoutInflater.from(context);
         smsDialogBuilder.setView(inflater.inflate(R.layout.dialog_sms, null))
@@ -193,14 +172,11 @@ public class DialogBoxHandler extends ListActivity{
                     ms.returnWithResult(1);
                     smsDialog.cancel();
                 }
-
             }
         });
-
-        return smsDialog;
     }
 
-    public Dialog emailDialog() {
+    public void emailDialog() {
         AlertDialog.Builder emailDialogBuilder = new AlertDialog.Builder(context);
         LayoutInflater inflater = LayoutInflater.from(context);
         emailDialogBuilder.setView(inflater.inflate(R.layout.dialog_email, null))
@@ -254,50 +230,11 @@ public class DialogBoxHandler extends ListActivity{
                     ms.returnWithResult(1);
                     emailDialog.cancel();
                 }
-
             }
         });
-//
-//        emailDialog.setButton(DialogInterface.BUTTON_POSITIVE, context.getString(R.string.enter), new DialogInterface.OnClickListener() {
-//            public void onClick(DialogInterface dialog, int id) {
-//                EditText emailAddress = (EditText) emailDialog.findViewById(R.id.de_et_email_address);
-//                EditText emailSubject = (EditText) emailDialog.findViewById(R.id.de_et_subject);
-//                EditText emailBody = (EditText) emailDialog.findViewById(R.id.de_et_body);
-//                if(TextUtils.isEmpty(emailAddress.getText().toString())
-//                        && TextUtils.isEmpty(emailSubject.getText().toString())
-//                        && TextUtils.isEmpty(emailBody.getText().toString())){
-//
-//                    emailAddress.setError(context.getString(R.string.error_email_required));
-//                    emailSubject.setError(context.getString(R.string.error_subject_required));
-//                    emailBody.setError(context.getString(R.string.error_body_required));
-//
-//                } else if(TextUtils.isEmpty(emailAddress.getText().toString())){
-//                    Log.d(TAG, "mailto:" + "-" + "?subject=" + emailSubject.getText().toString() + "&body=" + emailBody.getText().toString());
-//                    ms.setUriString("mailto:" + "-" + "?subject=" + emailSubject.getText().toString() + "&body=" + emailBody.getText().toString());
-//                    ms.returnWithResult(1);
-//                    dialog.cancel();
-//                } else if(TextUtils.isEmpty(emailSubject.getText().toString())){
-//                    Log.d(TAG, "mailto:" + emailAddress.getText().toString() + "?subject=" + "-" + "&body=" + emailBody.getText().toString());
-//                    ms.setUriString("mailto:" + emailAddress.getText().toString() + "?subject=" + "-" + "&body=" + emailBody.getText().toString());
-//                    ms.returnWithResult(1);
-//                    dialog.cancel();
-//                } else if(TextUtils.isEmpty(emailBody.getText().toString())){
-//                    Log.d(TAG, "mailto:" + emailAddress.getText().toString() + "?subject=" + emailSubject.getText().toString() + "&body=" + "-");
-//                    ms.setUriString("mailto:" + emailAddress.getText().toString() + "?subject=" + emailSubject.getText().toString() + "&body=" + "-");
-//                    ms.returnWithResult(1);
-//                    dialog.cancel();
-//                } else {
-//                    Log.d(TAG, "mailto:" + emailAddress.getText().toString() + "?subject=" + emailSubject.getText().toString() + "&body=" + emailBody.getText().toString());
-//                    ms.setUriString("mailto:" + emailAddress.getText().toString() + "?subject=" + emailSubject.getText().toString() + "&body=" + emailBody.getText().toString());
-//                    ms.returnWithResult(1);
-//                    dialog.cancel();
-//                }
-//            }
-//        });
-        return emailDialog;
     }
 
-    public Dialog locationDialog() {
+    public void locationDialog() {
         AlertDialog.Builder locationDialogBuilder = new AlertDialog.Builder(context);
         LayoutInflater inflater = LayoutInflater.from(context);
         locationDialogBuilder.setView(inflater.inflate(R.layout.dialog_location, null))
@@ -364,31 +301,9 @@ public class DialogBoxHandler extends ListActivity{
                 }
             }
         });
-
-
-//        locationDialog.setButton(DialogInterface.BUTTON_POSITIVE, context.getString(R.string.enter), new DialogInterface.OnClickListener() {
-//            public void onClick(DialogInterface dialog, int id) {
-//                EditText latitude = (EditText) locationDialog.findViewById(R.id.dl_et_latitude);
-//                EditText longitude = (EditText) locationDialog.findViewById(R.id.dl_et_longitude);
-//                if(TextUtils.isEmpty(latitude.getText().toString()) && TextUtils.isEmpty(longitude.getText().toString())){
-//                    latitude.setError(context.getString(R.string.error_latitude));
-//                    longitude.setError(context.getString(R.string.error_longitude));
-//                } else if(TextUtils.isEmpty(latitude.getText().toString())){
-//                    latitude.setError(context.getString(R.string.error_latitude));
-//                } else if(TextUtils.isEmpty(longitude.getText().toString())){
-//                    longitude.setError(context.getString(R.string.error_longitude));
-//                } else{
-//                    ms.setUriString("geo:" + latitude.getText().toString() + "," + longitude.getText().toString());
-//                    ms.returnWithResult(1);
-//                    dialog.cancel();
-//                }
-//            }
-//        });
-
-        return locationDialog;
     }
 
-    public Dialog appDialog(){
+    public void appDialog(){
         AlertDialog.Builder appDialogBuilder = new AlertDialog.Builder(context);
         packageManager = context.getPackageManager();
 
@@ -417,10 +332,11 @@ public class DialogBoxHandler extends ListActivity{
             }
         });
 
-        return appDialogBuilder.create();
+        appDialogBuilder.create().show();
+
     }
 
-    public Dialog hmsDialog(){
+    public void hmsDialog(){
 
 
 
@@ -471,35 +387,6 @@ public class DialogBoxHandler extends ListActivity{
 
             }
         });
-
-//        hmsDialog.setButton(DialogInterface.BUTTON_POSITIVE, context.getString(R.string.enter), new DialogInterface.OnClickListener() {
-//            public void onClick(DialogInterface dialog, int id) {
-//                EditText ipAddress = (EditText) hmsDialog.findViewById(R.id.dh_et_ip);
-//                EditText scriptLocation = (EditText) hmsDialog.findViewById(R.id.dh_et_location);
-//                EditText scriptName = (EditText) hmsDialog.findViewById(R.id.dh_et_name);
-//                Spinner httpSpinner = (Spinner) hmsDialog.findViewById(R.id.dh_spinr_http);
-//
-//                String[] httpTypes = new String[]{context.getString(R.string.http),context.getString(R.string.https)};
-//
-//
-//                ArrayAdapter<String> httpAdapter = new ArrayAdapter<String>(hmsDialogBuilder.getContext(), R.layout.support_simple_spinner_dropdown_item, httpTypes);
-//                httpAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-//
-//                httpSpinner.setAdapter(httpAdapter);
-//
-//                String httpSelected = "";
-//                if(httpSpinner.getSelectedItemPosition()==0){
-//                    httpSelected = "http://";
-//                } else if(httpSpinner.getSelectedItemPosition() == 1){
-//                    httpSelected = "https://";
-//                }
-//                Log.d(TAG, "hms:" + httpSelected + ipAddress.getText().toString() + scriptLocation.getText().toString() + "/" + scriptName.getText().toString());
-//                ms.setMimeString("http://" + ipAddress.getText().toString() + scriptLocation.getText().toString() + "/" + scriptName.getText().toString());
-//                ms.returnWithResult(3);
-//                dialog.cancel();
-//            }
-//        });
-        return hmsDialog;
 
     }
 
