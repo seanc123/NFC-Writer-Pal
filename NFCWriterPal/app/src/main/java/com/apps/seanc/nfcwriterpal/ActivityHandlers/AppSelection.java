@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.app.ListActivity;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -121,8 +120,8 @@ public class AppSelection extends ListActivity {
 
     private Dialog displayWriteDialog() {
         final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
-        dialogBuilder.setTitle(getString(R.string.write_dialog_title));
-        dialogBuilder.setMessage(getString(R.string.write_dialog_text));
+        dialogBuilder.setTitle(getString(R.string.tap_dialog_title));
+        dialogBuilder.setMessage(getString(R.string.tap_dialog_text));
 
 
         dialogBuilder.setPositiveButton("Cancel!", new DialogInterface.OnClickListener() {

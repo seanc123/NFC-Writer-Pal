@@ -67,14 +67,6 @@ public class MessageSelection extends AppCompatActivity
 
         dialogBoxHandler = new DialogBoxHandler(MessageSelection.this, this);
 
-        Spinner spinner = (Spinner) findViewById(R.id.spinner3);
-
-
-        String[] httpTypes = new String[]{this.getString(R.string.http),this.getString(R.string.https)};
-        ArrayAdapter<String> httpAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, httpTypes);
-        httpAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        spinner.setAdapter(httpAdapter);
-
         setOnClickListeners();
     }
 

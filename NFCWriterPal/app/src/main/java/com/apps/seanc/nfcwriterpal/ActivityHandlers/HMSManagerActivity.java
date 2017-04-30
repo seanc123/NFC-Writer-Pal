@@ -1,7 +1,6 @@
 package com.apps.seanc.nfcwriterpal.ActivityHandlers;
 
 import android.app.Activity;
-import android.app.PendingIntent;
 import android.content.Intent;
 import android.nfc.NdefMessage;
 import android.nfc.NfcAdapter;
@@ -11,21 +10,20 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.apps.seanc.nfcwriterpal.R;
-import com.apps.seanc.nfcwriterpal.Tools.Controller;
-import com.apps.seanc.nfcwriterpal.Tools.NdefMessageHandler;
+import com.apps.seanc.nfcwriterpal.Tools.HttpController;
 
 public class HMSManagerActivity extends Activity {
 
 
     private final String TAG = HMSManagerActivity.class.getName();
-    private Controller controller;
+    private HttpController controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hms_manager);
 
-        controller = new Controller();
+        controller = new HttpController();
         nfcIntent(getIntent());
     }
 

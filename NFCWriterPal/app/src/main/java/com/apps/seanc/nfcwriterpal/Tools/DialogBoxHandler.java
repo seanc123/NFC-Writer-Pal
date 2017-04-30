@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.apps.seanc.nfcwriterpal.ActivityHandlers.FormatActivity;
 import com.apps.seanc.nfcwriterpal.ArrayAdapters.ApplicationAdapter;
 import com.apps.seanc.nfcwriterpal.R;
 import com.apps.seanc.nfcwriterpal.ActivityHandlers.MessageSelection;
@@ -44,6 +45,7 @@ public class DialogBoxHandler extends ListActivity{
 
     private Context context;
     private MessageSelection ms;
+    private FormatActivity formatActivity;
 
 
 
@@ -54,6 +56,11 @@ public class DialogBoxHandler extends ListActivity{
     public DialogBoxHandler(Context context, MessageSelection ms){
         this.context = context;
         this.ms =  ms;
+    }
+
+    public DialogBoxHandler(Context context, FormatActivity formatActivity){
+        this.context = context;
+        this.formatActivity =  formatActivity;
     }
 
 
@@ -432,7 +439,7 @@ public class DialogBoxHandler extends ListActivity{
         return applist;
     }
 
-    public Dialog writeDialog(){
+    public AlertDialog tapTagDialog(){
 
         TextView title = new TextView(context);
         title.setText("Tap Device Off NFC Tag");
@@ -451,6 +458,34 @@ public class DialogBoxHandler extends ListActivity{
                     }
                 })
                 .setCustomTitle(title);
+
+        return writeDialogBuilder.create();
+    }
+
+    public AlertDialog unformattableDialog(){
+        TextView title = new TextView(context);
+        title.setText("Tag Not Formattable");
+        title.setBackgroundColor(Color.DKGRAY);
+        title.setPadding(10, 10, 10, 10);
+        title.setGravity(Gravity.CENTER);
+        title.setTextColor(Color.WHITE);
+        title.setTextSize(20);
+
+        AlertDialog.Builder writeDialogBuilder = new AlertDialog.Builder(context);
+        writeDialogBuilder.setPositiveButton(context.getString(R.string.accept), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        formatActivity.showWipeDialog();
+                        dialog.cancel();
+                    }
+                })
+                .setNegativeButton(context.getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                })
+                .setCustomTitle(title)
+                .setMessage("Would you like to wipe all data on the tag instead?");
 
         return writeDialogBuilder.create();
     }

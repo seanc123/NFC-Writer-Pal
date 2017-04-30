@@ -7,7 +7,6 @@ import android.util.Log;
 import java.io.IOException;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.Response;
 
 
 import org.apache.http.HttpResponse;
@@ -25,9 +24,9 @@ import org.apache.http.params.HttpParams;
  * all httpRequests. Each method is linked to a specific button press
  * on the MainAppActivity page.
  */
-public class Controller {
+public class HttpController {
 
-    private String TAG = Controller.class.getName();
+    private String TAG = HttpController.class.getName();
     private apacheTask task = null;
     private okTask okTask = null;
     private timeoutTask timeoutTask = null;
