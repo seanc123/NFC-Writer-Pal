@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity
     private NfcAdapter nfcAdpt;
     private PendingIntent nfcPendingIntent;
 
-    private Button writeButton, readButton;
+    private Button writeButton, readButton, formatButton;
     private NdefMessageHandler ndefMessageHandler;
 
     private NFCHelper nfcHelper;
@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity
 
         writeButton = (Button) findViewById(R.id.writeButton);
         readButton = (Button) findViewById(R.id.readButton);
+        formatButton = (Button) findViewById(R.id.main_btn_format);
         setOnClickListeners();
         
     }
@@ -230,8 +231,8 @@ public class MainActivity extends AppCompatActivity
 
         writeButton.setOnClickListener(new View.OnClickListener()  {
             public void onClick(View view){
-                Intent intent = new Intent(MainActivity.this, WriteActivity.class);
-                startActivity(intent);
+                Intent writeActivity = new Intent(MainActivity.this, WriteActivity.class);
+                startActivity(writeActivity);
                 //startActivityForResult(intent, 1);
             }
         });
@@ -242,6 +243,14 @@ public class MainActivity extends AppCompatActivity
                 startActivity(readActivityIntent);
             }
 
+        });
+
+        formatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent formatActivity = new Intent(MainActivity.this, FormatActivity.class);
+                startActivity(formatActivity);
+            }
         });
 
     }

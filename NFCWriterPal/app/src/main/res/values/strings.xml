@@ -11,10 +11,15 @@
     <string name="ok_writing">Write Successful</string>
     <string name="error_writing">Error writing to tag</string>
     <string name="ok_detection">Detected: </string>
-    <string name="title_activity_app_selection">AppSelection</string>
+
+    <string name="title_activity_app_selection">App Selection</string>
+
     <string name="save">Save</string>
     <string name="write">Write</string>
     <string name="read">Read</string>
+    <string name="format">Format</string>
+    <string name="enter">Enter</string>
+    <string name="cancel">Cancel</string>
     <string name="save_and_write">Save &amp; Write</string>
     <string name="http">HTTP</string>
     <string name="https">HTTPS</string>
@@ -27,27 +32,22 @@
     <string name="tag_type">Tag Type:</string>
     <string name="tech_list_title">List of supported tech:</string>
     <string name="record_list_title">Records on NFC Tag:</string>
-
     <string name="bytes">Bytes</string>
     <string name="tag_unknown">Tag Type Unknown</string>
-
-
     <string name="record_type">Type:</string>
     <string name="record_size">Size:</string>
 
 
-    <string name="write_dialog_title">Tap Phone off NFC Tag</string>
-    <string name="write_dialog_text">Please touch your phone off an NFC tag</string>
+    <string name="tap_dialog_title">Tap Phone off NFC Tag</string>
+    <string name="tap_dialog_text">Please touch your phone off an NFC tag</string>
 
 
     <string name="write_result_zero">Write Operation Successful</string>
     <string name="write_result_default">NULL</string>
     <string name="title_activity_read">ReadActivity</string>
-    <string name="title_activity_message_selection">message_selection</string>
+    <string name="title_activity_message_selection">Message Selection</string>
 
 
-    <string name="enter">Enter</string>
-    <string name="cancel">Cancel</string>
     <string name="use_location">Use Current Location</string>
 
     <string name="dialog_webpage_address">Webpage Address</string>
@@ -96,4 +96,5 @@
     <string name="write_header_email_subject">Subject:</string>
     <string name="write_header_app_name">App:</string>
     <string name="title_activity_hms">HMSActivity</string>
+    <string name="title_activity_format">Format</string>
 </resources>

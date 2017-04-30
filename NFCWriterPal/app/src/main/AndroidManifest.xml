@@ -70,7 +70,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.apps.seanc.nfcwriterpal.ActivityHandlers.MainActivity" />
         </activity>
-        <activity android:name=".ActivityHandlers.HMSManagerActivity"
+        <activity
+            android:name=".ActivityHandlers.HMSManagerActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar">
             <intent-filter>
                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
@@ -78,7 +79,17 @@
                 <data android:mimeType="application/com.apps.seanc.nfcwriterpal" />
 
                 <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter></activity>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ActivityHandlers.FormatActivity"
+            android:label="@string/title_activity_format"
+            android:parentActivityName=".ActivityHandlers.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.apps.seanc.nfcwriterpal.ActivityHandlers.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
