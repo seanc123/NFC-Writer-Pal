@@ -202,11 +202,14 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_write) {
-            // Handle the camera action
+            Intent writeActivity = new Intent(MainActivity.this, WriteActivity.class);
+            startActivity(writeActivity);
         } else if (id == R.id.nav_read) {
-
+            Intent readActivityIntent = new Intent(MainActivity.this, ReadActivity.class);
+            startActivity(readActivityIntent);
         } else if (id == R.id.nav_format) {
-
+            Intent formatActivity = new Intent(MainActivity.this, FormatActivity.class);
+            startActivity(formatActivity);
         } else if (id == R.id.nav_saved_functions) {
 
         } else if (id == R.id.nav_share) {
