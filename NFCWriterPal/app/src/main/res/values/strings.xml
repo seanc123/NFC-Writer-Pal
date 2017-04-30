@@ -16,6 +16,8 @@
     <string name="write">Write</string>
     <string name="read">Read</string>
     <string name="save_and_write">Save &amp; Write</string>
+    <string name="http">HTTP</string>
+    <string name="https">HTTPS</string>
 
     <string name="tag_id">Tag ID:</string>
     <string name="tag_max_size">Tag maximum size:</string>
@@ -59,9 +61,20 @@
     <string name="dialog_location_longitude">Longitude</string>
     <string name="dialog_location_latitude">Latitude</string>
     <string name="dialog_location_use_current">Use Current</string>
+    <string name="dialog_http_type">HTTP Type</string>
     <string name="dialog_hms_ip">Enter HMS IP Address</string>
     <string name="dialog_hms_script_location">Enter script location (e.g /functions/security)</string>
     <string name="dialog_hms_script_name">Enter Script Name</string>
+
+    <string name="error_web_required">Webpage Address Required</string>
+    <string name="error_phone_required">Phone Number Required</string>
+    <string name="error_body_required">Body Required</string>
+    <string name="error_subject_required">Subject Required</string>
+    <string name="error_email_required">Email Address Required</string>
+    <string name="error_latitude">Latitude Required</string>
+    <string name="error_longitude">Longitude Required</string>
+    <string name="error_ip">IP Address Required</string>
+    <string name="error_script">Script Name Required</string>
 
     <string name="ms_webpage">Webpage</string>
     <string name="ms_email">Email</string>

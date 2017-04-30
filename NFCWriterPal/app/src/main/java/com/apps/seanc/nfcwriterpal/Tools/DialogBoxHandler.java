@@ -13,6 +13,7 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -21,6 +22,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +51,8 @@ public class DialogBoxHandler extends ListActivity{
     private Context context;
     private MessageSelection ms;
 
+
+
     public DialogBoxHandler(Context context){
         this.context = context;
     }
@@ -59,25 +63,45 @@ public class DialogBoxHandler extends ListActivity{
     }
 
 
-    public Dialog webpageDialog() {
+    public AlertDialog webpageDialog() {
+
+        final boolean cancel = false;
         AlertDialog.Builder webpageDialogBuilder = new AlertDialog.Builder(context);
+        webpageDialogBuilder.setCancelable(false);
         LayoutInflater inflater = LayoutInflater.from(context);
         webpageDialogBuilder.setView(inflater.inflate(R.layout.dialog_webpage, null))
                 .setNegativeButton(context.getString(R.string.cancel), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
+                        dialog.dismiss();
+                    }
+                })
+                .setPositiveButton(context.getString(R.string.enter), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
                     }
                 });
         final AlertDialog webpageDialog = webpageDialogBuilder.create();
 
-        webpageDialog.setButton(DialogInterface.BUTTON_POSITIVE, context.getString(R.string.enter), new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                EditText webinput = (EditText) webpageDialog.findViewById(R.id.dw_et_webpage_address);
-                ms.setUriString("http://" + webinput.getText().toString());
-                ms.returnWithResult(1);
-                dialog.cancel();
+        webpageDialog.show();
+
+        webpageDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                EditText webpageInput = (EditText) webpageDialog.findViewById(R.id.dw_et_webpage_address);
+                if("".equals(webpageInput.getText().toString().trim())){
+                    webpageInput.setError(context.getString(R.string.error_web_required));
+                    return;
+                } else {
+                    ms.setUriString("http://" + webpageInput.getText().toString());
+                    ms.returnWithResult(1);
+                    webpageDialog.dismiss();
+                }
+
             }
         });
+
         return webpageDialog;
     }
 
@@ -89,17 +113,43 @@ public class DialogBoxHandler extends ListActivity{
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
                     }
+                })
+                .setPositiveButton(context.getString(R.string.enter), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
                 });
         final AlertDialog phonecallDialog = phoneDialogBuilder.create();
 
-        phonecallDialog.setButton(DialogInterface.BUTTON_POSITIVE, context.getString(R.string.enter), new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
+        phonecallDialog.show();
+
+        phonecallDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 EditText phoneNumber = (EditText) phonecallDialog.findViewById(R.id.dp_et_phone_number);
-                ms.setUriString("tel:" + phoneNumber.getText().toString());
-                ms.returnWithResult(1);
-                dialog.cancel();
+                if(TextUtils.isEmpty(phoneNumber.getText().toString())){
+                    phoneNumber.setError(context.getString(R.string.error_phone_required));
+                } else {
+                    ms.setUriString("tel:" + phoneNumber.getText().toString());
+                    ms.returnWithResult(1);
+                    phonecallDialog.cancel();
+                }
             }
         });
+
+//        phonecallDialog.setButton(DialogInterface.BUTTON_POSITIVE, context.getString(R.string.enter), new DialogInterface.OnClickListener() {
+//            public void onClick(DialogInterface dialog, int id) {
+//                EditText phoneNumber = (EditText) phonecallDialog.findViewById(R.id.dp_et_phone_number);
+//                if(TextUtils.isEmpty(phoneNumber.getText().toString())){
+//                    phoneNumber.setError(context.getString(R.string.error_phone_required));
+//                } else {
+//                    ms.setUriString("tel:" + phoneNumber.getText().toString());
+//                    ms.returnWithResult(1);
+//                    dialog.cancel();
+//                }
+//            }
+//        });
         return phonecallDialog;
     }
 
@@ -111,18 +161,42 @@ public class DialogBoxHandler extends ListActivity{
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
                     }
+                })
+                .setPositiveButton(context.getString(R.string.enter), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
                 });
         final AlertDialog smsDialog = smsDialogBuilder.create();
 
-        smsDialog.setButton(DialogInterface.BUTTON_POSITIVE, context.getString(R.string.enter), new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
+        smsDialog.show();
+
+        smsDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 EditText smsNumber = (EditText) smsDialog.findViewById(R.id.ds_et_phone_number);
                 EditText smsBody = (EditText) smsDialog.findViewById(R.id.ds_et_sms_body);
-                ms.setUriString("sms:" + smsNumber.getText().toString() + "?body=" + smsBody.getText().toString());
-                ms.returnWithResult(1);
-                dialog.cancel();
+                if(TextUtils.isEmpty(smsNumber.getText().toString()) && TextUtils.isEmpty(smsBody.getText().toString())){
+                    smsNumber.setError(context.getString(R.string.error_phone_required));
+                    smsBody.setError(context.getString(R.string.error_body_required));
+                } else if(TextUtils.isEmpty(smsNumber.getText().toString())){
+                    ms.setUriString("sms:" + "0" + "?body=" + smsBody.getText().toString());
+                    ms.returnWithResult(1);
+                    smsDialog.cancel();
+                } else if(TextUtils.isEmpty(smsBody.getText().toString())){
+                    ms.setUriString("sms:" + smsNumber.getText().toString() + "?body=" + "-");
+                    ms.returnWithResult(1);
+                    smsDialog.cancel();
+                } else {
+                    ms.setUriString("sms:" + smsNumber.getText().toString() + "?body=" + smsBody.getText().toString());
+                    ms.returnWithResult(1);
+                    smsDialog.cancel();
+                }
+
             }
         });
+
         return smsDialog;
     }
 
@@ -134,20 +208,92 @@ public class DialogBoxHandler extends ListActivity{
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
                     }
+                })
+                .setPositiveButton(context.getString(R.string.enter), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
                 });
         final AlertDialog emailDialog = emailDialogBuilder.create();
 
-        emailDialog.setButton(DialogInterface.BUTTON_POSITIVE, context.getString(R.string.enter), new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
+        emailDialog.show();
+
+        emailDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 EditText emailAddress = (EditText) emailDialog.findViewById(R.id.de_et_email_address);
                 EditText emailSubject = (EditText) emailDialog.findViewById(R.id.de_et_subject);
                 EditText emailBody = (EditText) emailDialog.findViewById(R.id.de_et_body);
-                Log.d(TAG, "mailto:" + emailAddress.getText().toString() + "?subject=" + emailSubject.getText().toString() + "&body=" + emailBody.getText().toString());
-                ms.setUriString("mailto:" + emailAddress.getText().toString() + "?subject=" + emailSubject.getText().toString() + "&body=" + emailBody.getText().toString());
-                ms.returnWithResult(1);
-                dialog.cancel();
+                if(TextUtils.isEmpty(emailAddress.getText().toString())
+                        && TextUtils.isEmpty(emailSubject.getText().toString())
+                        && TextUtils.isEmpty(emailBody.getText().toString())){
+
+                    emailAddress.setError(context.getString(R.string.error_email_required));
+                    emailSubject.setError(context.getString(R.string.error_subject_required));
+                    emailBody.setError(context.getString(R.string.error_body_required));
+
+                } else if(TextUtils.isEmpty(emailAddress.getText().toString())){
+                    Log.d(TAG, "mailto:" + "-" + "?subject=" + emailSubject.getText().toString() + "&body=" + emailBody.getText().toString());
+                    ms.setUriString("mailto:" + "-" + "?subject=" + emailSubject.getText().toString() + "&body=" + emailBody.getText().toString());
+                    ms.returnWithResult(1);
+                    emailDialog.cancel();
+                } else if(TextUtils.isEmpty(emailSubject.getText().toString())){
+                    Log.d(TAG, "mailto:" + emailAddress.getText().toString() + "?subject=" + "-" + "&body=" + emailBody.getText().toString());
+                    ms.setUriString("mailto:" + emailAddress.getText().toString() + "?subject=" + "-" + "&body=" + emailBody.getText().toString());
+                    ms.returnWithResult(1);
+                    emailDialog.cancel();
+                } else if(TextUtils.isEmpty(emailBody.getText().toString())){
+                    Log.d(TAG, "mailto:" + emailAddress.getText().toString() + "?subject=" + emailSubject.getText().toString() + "&body=" + "-");
+                    ms.setUriString("mailto:" + emailAddress.getText().toString() + "?subject=" + emailSubject.getText().toString() + "&body=" + "-");
+                    ms.returnWithResult(1);
+                    emailDialog.cancel();
+                } else {
+                    Log.d(TAG, "mailto:" + emailAddress.getText().toString() + "?subject=" + emailSubject.getText().toString() + "&body=" + emailBody.getText().toString());
+                    ms.setUriString("mailto:" + emailAddress.getText().toString() + "?subject=" + emailSubject.getText().toString() + "&body=" + emailBody.getText().toString());
+                    ms.returnWithResult(1);
+                    emailDialog.cancel();
+                }
+
             }
         });
+//
+//        emailDialog.setButton(DialogInterface.BUTTON_POSITIVE, context.getString(R.string.enter), new DialogInterface.OnClickListener() {
+//            public void onClick(DialogInterface dialog, int id) {
+//                EditText emailAddress = (EditText) emailDialog.findViewById(R.id.de_et_email_address);
+//                EditText emailSubject = (EditText) emailDialog.findViewById(R.id.de_et_subject);
+//                EditText emailBody = (EditText) emailDialog.findViewById(R.id.de_et_body);
+//                if(TextUtils.isEmpty(emailAddress.getText().toString())
+//                        && TextUtils.isEmpty(emailSubject.getText().toString())
+//                        && TextUtils.isEmpty(emailBody.getText().toString())){
+//
+//                    emailAddress.setError(context.getString(R.string.error_email_required));
+//                    emailSubject.setError(context.getString(R.string.error_subject_required));
+//                    emailBody.setError(context.getString(R.string.error_body_required));
+//
+//                } else if(TextUtils.isEmpty(emailAddress.getText().toString())){
+//                    Log.d(TAG, "mailto:" + "-" + "?subject=" + emailSubject.getText().toString() + "&body=" + emailBody.getText().toString());
+//                    ms.setUriString("mailto:" + "-" + "?subject=" + emailSubject.getText().toString() + "&body=" + emailBody.getText().toString());
+//                    ms.returnWithResult(1);
+//                    dialog.cancel();
+//                } else if(TextUtils.isEmpty(emailSubject.getText().toString())){
+//                    Log.d(TAG, "mailto:" + emailAddress.getText().toString() + "?subject=" + "-" + "&body=" + emailBody.getText().toString());
+//                    ms.setUriString("mailto:" + emailAddress.getText().toString() + "?subject=" + "-" + "&body=" + emailBody.getText().toString());
+//                    ms.returnWithResult(1);
+//                    dialog.cancel();
+//                } else if(TextUtils.isEmpty(emailBody.getText().toString())){
+//                    Log.d(TAG, "mailto:" + emailAddress.getText().toString() + "?subject=" + emailSubject.getText().toString() + "&body=" + "-");
+//                    ms.setUriString("mailto:" + emailAddress.getText().toString() + "?subject=" + emailSubject.getText().toString() + "&body=" + "-");
+//                    ms.returnWithResult(1);
+//                    dialog.cancel();
+//                } else {
+//                    Log.d(TAG, "mailto:" + emailAddress.getText().toString() + "?subject=" + emailSubject.getText().toString() + "&body=" + emailBody.getText().toString());
+//                    ms.setUriString("mailto:" + emailAddress.getText().toString() + "?subject=" + emailSubject.getText().toString() + "&body=" + emailBody.getText().toString());
+//                    ms.returnWithResult(1);
+//                    dialog.cancel();
+//                }
+//            }
+//        });
         return emailDialog;
     }
 
@@ -160,7 +306,13 @@ public class DialogBoxHandler extends ListActivity{
                         dialog.cancel();
                     }
                 })
-                .setNeutralButton(context.getString(R.string.use_location), null);
+                .setNeutralButton(context.getString(R.string.use_location), null)
+                .setPositiveButton(context.getString(R.string.enter), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
 
         final AlertDialog locationDialog = locationDialogBuilder.create();
 
@@ -191,15 +343,47 @@ public class DialogBoxHandler extends ListActivity{
             }
         });
 
-        locationDialog.setButton(DialogInterface.BUTTON_POSITIVE, context.getString(R.string.enter), new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
+        locationDialog.show();
+
+        locationDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 EditText latitude = (EditText) locationDialog.findViewById(R.id.dl_et_latitude);
                 EditText longitude = (EditText) locationDialog.findViewById(R.id.dl_et_longitude);
-                ms.setUriString("geo:" + latitude.getText().toString() + "," + longitude.getText().toString());
-                ms.returnWithResult(1);
-                dialog.cancel();
+                if(TextUtils.isEmpty(latitude.getText().toString()) && TextUtils.isEmpty(longitude.getText().toString())){
+                    latitude.setError(context.getString(R.string.error_latitude));
+                    longitude.setError(context.getString(R.string.error_longitude));
+                } else if(TextUtils.isEmpty(latitude.getText().toString())){
+                    latitude.setError(context.getString(R.string.error_latitude));
+                } else if(TextUtils.isEmpty(longitude.getText().toString())){
+                    longitude.setError(context.getString(R.string.error_longitude));
+                } else{
+                    ms.setUriString("geo:" + latitude.getText().toString() + "," + longitude.getText().toString());
+                    ms.returnWithResult(1);
+                    locationDialog.cancel();
+                }
             }
         });
+
+
+//        locationDialog.setButton(DialogInterface.BUTTON_POSITIVE, context.getString(R.string.enter), new DialogInterface.OnClickListener() {
+//            public void onClick(DialogInterface dialog, int id) {
+//                EditText latitude = (EditText) locationDialog.findViewById(R.id.dl_et_latitude);
+//                EditText longitude = (EditText) locationDialog.findViewById(R.id.dl_et_longitude);
+//                if(TextUtils.isEmpty(latitude.getText().toString()) && TextUtils.isEmpty(longitude.getText().toString())){
+//                    latitude.setError(context.getString(R.string.error_latitude));
+//                    longitude.setError(context.getString(R.string.error_longitude));
+//                } else if(TextUtils.isEmpty(latitude.getText().toString())){
+//                    latitude.setError(context.getString(R.string.error_latitude));
+//                } else if(TextUtils.isEmpty(longitude.getText().toString())){
+//                    longitude.setError(context.getString(R.string.error_longitude));
+//                } else{
+//                    ms.setUriString("geo:" + latitude.getText().toString() + "," + longitude.getText().toString());
+//                    ms.returnWithResult(1);
+//                    dialog.cancel();
+//                }
+//            }
+//        });
 
         return locationDialog;
     }
@@ -236,29 +420,85 @@ public class DialogBoxHandler extends ListActivity{
         return appDialogBuilder.create();
     }
 
-    private Dialog hmsDialog(){
+    public Dialog hmsDialog(){
 
-        AlertDialog.Builder hmsDialogBuilder = new AlertDialog.Builder(context);
+
+
+        final AlertDialog.Builder hmsDialogBuilder = new AlertDialog.Builder(context);
         LayoutInflater inflater = LayoutInflater.from(context);
         hmsDialogBuilder.setView(inflater.inflate(R.layout.dialog_hms, null))
                 .setNegativeButton(context.getString(R.string.cancel), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
                     }
+                })
+                .setPositiveButton(context.getString(R.string.enter), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
                 });
         final AlertDialog hmsDialog = hmsDialogBuilder.create();
 
-        hmsDialog.setButton(DialogInterface.BUTTON_POSITIVE, context.getString(R.string.enter), new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
+        hmsDialog.show();
+
+        hmsDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 EditText ipAddress = (EditText) hmsDialog.findViewById(R.id.dh_et_ip);
                 EditText scriptLocation = (EditText) hmsDialog.findViewById(R.id.dh_et_location);
                 EditText scriptName = (EditText) hmsDialog.findViewById(R.id.dh_et_name);
-                Log.d(TAG, "hms:" + ipAddress.getText().toString() + "?subject=" + scriptLocation.getText().toString() + "&body=" + scriptName.getText().toString());
-                ms.setMimeString("hms:" + ipAddress.getText().toString() + scriptLocation.getText().toString() + "/" + scriptName.getText().toString());
+                Spinner httpSpinner = (Spinner) hmsDialog.findViewById(R.id.dh_spinr_http);
+
+                String[] httpTypes = new String[]{context.getString(R.string.http),context.getString(R.string.https)};
+
+
+                ArrayAdapter<String> httpAdapter = new ArrayAdapter<String>(hmsDialogBuilder.getContext(), R.layout.support_simple_spinner_dropdown_item, httpTypes);
+                httpAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+
+                httpSpinner.setAdapter(httpAdapter);
+
+                String httpSelected = "";
+                if(httpSpinner.getSelectedItemPosition()==0){
+                    httpSelected = "http://";
+                } else if(httpSpinner.getSelectedItemPosition() == 1){
+                    httpSelected = "https://";
+                }
+                Log.d(TAG, "hms:" + httpSelected + ipAddress.getText().toString() + scriptLocation.getText().toString() + "/" + scriptName.getText().toString());
+                ms.setMimeString("http://" + ipAddress.getText().toString() + scriptLocation.getText().toString() + "/" + scriptName.getText().toString());
                 ms.returnWithResult(3);
-                dialog.cancel();
+                hmsDialog.cancel();
+
             }
         });
+
+//        hmsDialog.setButton(DialogInterface.BUTTON_POSITIVE, context.getString(R.string.enter), new DialogInterface.OnClickListener() {
+//            public void onClick(DialogInterface dialog, int id) {
+//                EditText ipAddress = (EditText) hmsDialog.findViewById(R.id.dh_et_ip);
+//                EditText scriptLocation = (EditText) hmsDialog.findViewById(R.id.dh_et_location);
+//                EditText scriptName = (EditText) hmsDialog.findViewById(R.id.dh_et_name);
+//                Spinner httpSpinner = (Spinner) hmsDialog.findViewById(R.id.dh_spinr_http);
+//
+//                String[] httpTypes = new String[]{context.getString(R.string.http),context.getString(R.string.https)};
+//
+//
+//                ArrayAdapter<String> httpAdapter = new ArrayAdapter<String>(hmsDialogBuilder.getContext(), R.layout.support_simple_spinner_dropdown_item, httpTypes);
+//                httpAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+//
+//                httpSpinner.setAdapter(httpAdapter);
+//
+//                String httpSelected = "";
+//                if(httpSpinner.getSelectedItemPosition()==0){
+//                    httpSelected = "http://";
+//                } else if(httpSpinner.getSelectedItemPosition() == 1){
+//                    httpSelected = "https://";
+//                }
+//                Log.d(TAG, "hms:" + httpSelected + ipAddress.getText().toString() + scriptLocation.getText().toString() + "/" + scriptName.getText().toString());
+//                ms.setMimeString("http://" + ipAddress.getText().toString() + scriptLocation.getText().toString() + "/" + scriptName.getText().toString());
+//                ms.returnWithResult(3);
+//                dialog.cancel();
+//            }
+//        });
         return hmsDialog;
 
     }

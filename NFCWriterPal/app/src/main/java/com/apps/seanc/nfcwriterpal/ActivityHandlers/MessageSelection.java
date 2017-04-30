@@ -18,7 +18,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 
 import com.apps.seanc.nfcwriterpal.R;
 import com.apps.seanc.nfcwriterpal.Tools.DialogBoxHandler;
@@ -31,7 +33,7 @@ public class MessageSelection extends AppCompatActivity
 
     private static final String TAG = MessageSelection.class.getName();
 
-    private Button webpage, text, email, phone, location, app;
+    private Button webpage, text, email, phone, location, app, hms;
     private static AlertDialog dialogBox;
     private static String uriString;
     private static String mimeString;
@@ -62,8 +64,17 @@ public class MessageSelection extends AppCompatActivity
         email = (Button) findViewById(R.id.ms_btn_email);
         location = (Button) findViewById(R.id.ms_btn_location);
         app = (Button) findViewById(R.id.ms_btn_app);
+        hms = (Button) findViewById(R.id.ms_btn_hms);
 
         dialogBoxHandler = new DialogBoxHandler(MessageSelection.this, this);
+
+        Spinner spinner = (Spinner) findViewById(R.id.spinner3);
+
+
+        String[] httpTypes = new String[]{this.getString(R.string.http),this.getString(R.string.https)};
+        ArrayAdapter<String> httpAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, httpTypes);
+        httpAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        spinner.setAdapter(httpAdapter);
 
         setOnClickListeners();
     }
@@ -121,35 +132,35 @@ public class MessageSelection extends AppCompatActivity
         webpage.setOnClickListener(new View.OnClickListener()  {
             public void onClick(View view){
                 dialogBox = (AlertDialog) dialogBoxHandler.webpageDialog();
-                dialogBox.show();
+                //dialogBox.show();
             }
         });
 
         phone.setOnClickListener(new View.OnClickListener()  {
             public void onClick(View view){
                 dialogBox = (AlertDialog) dialogBoxHandler.phoneCallDialog();
-                dialogBox.show();
+                //dialogBox.show();
             }
         });
 
         text.setOnClickListener(new View.OnClickListener()  {
             public void onClick(View view){
                 dialogBox = (AlertDialog) dialogBoxHandler.smsDialog();
-                dialogBox.show();
+                //dialogBox.show();
             }
         });
 
         email.setOnClickListener(new View.OnClickListener()  {
             public void onClick(View view){
                 dialogBox = (AlertDialog) dialogBoxHandler.emailDialog();
-                dialogBox.show();
+                //dialogBox.show();
             }
         });
 
         location.setOnClickListener(new View.OnClickListener()  {
             public void onClick(View view){
                 dialogBox = (AlertDialog) dialogBoxHandler.locationDialog();
-                dialogBox.show();
+                //dialogBox.show();
             }
         });
 
@@ -157,6 +168,13 @@ public class MessageSelection extends AppCompatActivity
             public void onClick(View view){
                 dialogBox = (AlertDialog) dialogBoxHandler.appDialog();
                 dialogBox.show();
+            }
+        });
+
+        hms.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                dialogBox = (AlertDialog) dialogBoxHandler.hmsDialog();
+                //dialogBox.show();
             }
         });
 
@@ -182,9 +200,9 @@ public class MessageSelection extends AppCompatActivity
                     NdefRecord ndefRecord = NdefRecord.createUri(uri);
                     NdefRecordParcel ndefRecordParcel = new NdefRecordParcel(ndefRecord);
 
-                    Intent returnToMain = new Intent(this, MainActivity.class);
-                    returnToMain.putExtra("ndefRecord", ndefRecordParcel);
-                    setResult(RESULT_OK, returnToMain);
+                    Intent returnToWrite = new Intent(this, MainActivity.class);
+                    returnToWrite.putExtra("ndefRecord", ndefRecordParcel);
+                    setResult(RESULT_OK, returnToWrite);
 
                     dialogBox.dismiss();
                     finish();
@@ -196,9 +214,10 @@ public class MessageSelection extends AppCompatActivity
             case 2:
                 try{
                     NdefRecord ndefRecord = NdefRecord.createApplicationRecord(appInfo.packageName);
-                    NdefRecordParcel ndefRecordParcel = new NdefRecordParcel(ndefRecord);Intent returnToMain = new Intent(this, MainActivity.class);
-                    returnToMain.putExtra("ndefRecord", ndefRecordParcel);
-                    setResult(RESULT_OK, returnToMain);
+                    NdefRecordParcel ndefRecordParcel = new NdefRecordParcel(ndefRecord);
+                    Intent returnToWrite = new Intent(this, MainActivity.class);
+                    returnToWrite.putExtra("ndefRecord", ndefRecordParcel);
+                    setResult(RESULT_OK, returnToWrite);
                     dialogBox.dismiss();
                     finish();
                 } catch (Exception e){
@@ -207,11 +226,20 @@ public class MessageSelection extends AppCompatActivity
                 break;
             case 3:
                 try{
-                    String mimeString = "http://192.168.0.241/functions/disarm.php";
-                    NdefRecord appRecord = new NdefRecord(
+                    //String mimeString = "http://192.168.0.241/functions/disarm.php";
+                    NdefRecord mimeRecord = new NdefRecord(
                             NdefRecord.TNF_MIME_MEDIA ,
                             "application/com.apps.seanc.nfcwriterpal".getBytes(Charset.forName("US-ASCII")),
                             new byte[0], mimeString.getBytes(Charset.forName("US-ASCII")));
+
+                    NdefRecordParcel ndefRecordParcel = new NdefRecordParcel(mimeRecord);
+
+                    Intent returnToWrite = new Intent(this, MainActivity.class);
+                    returnToWrite.putExtra("ndefRecord", ndefRecordParcel);
+                    setResult(RESULT_OK, returnToWrite);
+
+                    dialogBox.dismiss();
+                    finish();
                 } catch (Exception e) {
                     Log.d(TAG, e.toString());
                 }
