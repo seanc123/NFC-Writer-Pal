@@ -5,31 +5,31 @@
         <item
             android:id="@+id/nav_write"
             android:icon="@drawable/ic_menu_write"
-            android:title="Write" />
+            android:title="@string/write" />
         <item
             android:id="@+id/nav_read"
             android:icon="@drawable/ic_menu_read"
-            android:title="Read" />
+            android:title="@string/read" />
         <item
             android:id="@+id/nav_format"
             android:icon="@drawable/ic_menu_wipe"
-            android:title="Format" />
+            android:title="@string/format" />
         <item
             android:id="@+id/nav_saved_functions"
             android:icon="@drawable/ic_menu_saved_functions"
             android:title="Saved Functions" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="@string/communicate">
         <menu>
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:title="@string/share" />
             <item
                 android:id="@+id/nav_contact"
                 android:icon="@drawable/ic_menu_contact"
-                android:title="Contact" />
+                android:title="@string/contact" />
         </menu>
     </item>
 

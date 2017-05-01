@@ -101,10 +101,13 @@ public class ReadActivity extends AppCompatActivity
             Ndef nfcTag = Ndef.get(tag);
             try{
                 nfcTag.connect();
+                Log.d(TAG, "CONNECTED TO TAG");
                 maxSize.setText(String.format(Locale.getDefault(), "%d %s", nfcTag.getMaxSize() , getString(R.string.bytes)));
                 tagType.setText(nfcTag.getType());
                 if(nfcTag.isWritable()){
                     isWritable.setText(getString(R.string.yes));
+                } else {
+                    isWritable.setText(getString(R.string.no));
                 }
                 nfcTag.close();
 
@@ -132,7 +135,6 @@ public class ReadActivity extends AppCompatActivity
                 tagMessages.setText("0");
                 tagRecords.setText("0");
                 tagType.setText(getString(R.string.read_tag_unknown));
-                isWritable.setText(getString(R.string.no));
                 maxSize.setText(String.format(Locale.getDefault(), "%d %s", 0 , getString(R.string.bytes)));
                 recordAdapter = new RecordAdapter(ReadActivity.this, R.layout.snippet_record_list, null);
                 recordListNS.setAdapter(recordAdapter);
