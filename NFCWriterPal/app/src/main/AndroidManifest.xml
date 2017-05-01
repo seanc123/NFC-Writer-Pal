@@ -90,6 +90,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.apps.seanc.nfcwriterpal.ActivityHandlers.MainActivity" />
         </activity>
+        <activity
+            android:name=".ActivityHandlers.ContactActivity"
+            android:label="@string/title_activity_contact"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
