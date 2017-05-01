@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">NFC Writer Pal</string>
-    <string name="title_activity_main_with_navigation">MainWithNavigation</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -13,46 +12,51 @@
     <string name="ok_detection">Detected: </string>
 
     <string name="title_activity_app_selection">App Selection</string>
+    <string name="title_activity_read">Read Tag</string>
+    <string name="title_activity_message_selection">Message Selection</string>
+    <string name="title_activity_write">Write To Tag</string>
+    <string name="title_activity_hms">HMSActivity</string>
+    <string name="title_activity_format">Format</string>
+    <string name="title_activity_contact">Contact</string>
+    <string name="title_activity_share">Share</string>
 
-    <string name="save">Save</string>
+
     <string name="write">Write</string>
     <string name="read">Read</string>
     <string name="format">Format</string>
+    <string name="saved_functions">Saved functions</string>
     <string name="share">Share</string>
+    <string name="contact">Contact</string>
+
     <string name="enter">Enter</string>
     <string name="cancel">Cancel</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+
+    <string name="save">Save</string>
     <string name="save_and_write">Save &amp; Write</string>
     <string name="http">HTTP</string>
     <string name="https">HTTPS</string>
-
-    <string name="tag_id">Tag ID:</string>
-    <string name="tag_max_size">Tag maximum size:</string>
-    <string name="tag_current_size">Tag current size:</string>
-    <string name="no_of_messages">Number of NDEF messages:</string>
-    <string name="no_of_records">Number of NDEF records:</string>
-    <string name="tag_type">Tag Type:</string>
-    <string name="tech_list_title">List of supported tech:</string>
-    <string name="record_list_title">Records on NFC Tag:</string>
     <string name="bytes">Bytes</string>
-    <string name="tag_unknown">Tag Type Unknown</string>
     <string name="record_type">Type:</string>
     <string name="record_size">Size:</string>
-    <string name="read_writable">Writable</string>
 
+    <string name="read_tag_id">Tag ID:</string>
+    <string name="read_tag_max_size">Tag maximum size:</string>
+    <string name="read_tag_current_size">Tag current size:</string>
+    <string name="read_no_of_messages">Number of NDEF messages:</string>
+    <string name="read_no_of_records">Number of NDEF records:</string>
+    <string name="read_tag_type">Tag Type:</string>
+    <string name="read_tech_list_title">List of supported tech:</string>
+    <string name="read_record_list_title">Records on NFC Tag:</string>
+    <string name="read_tag_unknown">Tag Type Unknown</string>
+    <string name="read_writable">Writable</string>
 
     <string name="tap_dialog_title">Tap Phone off NFC Tag</string>
     <string name="tap_dialog_text">Please touch your phone off an NFC tag</string>
 
-
     <string name="write_result_zero">Write Operation Successful</string>
     <string name="write_result_default">NULL</string>
-    <string name="title_activity_read">Read Tag</string>
-    <string name="title_activity_message_selection">Message Selection</string>
-
-
-    <string name="use_location">Use Current Location</string>
 
     <string name="dialog_webpage_address">Webpage Address</string>
     <string name="dialog_webpage_enter_address">Enter Webpage Address</string>
@@ -64,7 +68,7 @@
     <string name="dialog_email_enter_body">Enter Email Body</string>
     <string name="dialog_location_longitude">Longitude</string>
     <string name="dialog_location_latitude">Latitude</string>
-    <string name="dialog_location_use_current">Use Current</string>
+    <string name="dialog_location_use_current">Use Current Location</string>
     <string name="dialog_http_type">HTTP Type</string>
     <string name="dialog_hms_ip">Enter HMS IP Address</string>
     <string name="dialog_hms_script_location">Enter script location (e.g /functions/security)</string>
@@ -88,10 +92,6 @@
     <string name="ms_location">Location</string>
     <string name="ms_hms">Home Management System</string>
 
-
-    <string name="title_activity_write">Write To Tag</string>
-
-
     <string name="write_header_request_type">Request Type:</string>
     <string name="write_header_webpage">Webpage:</string>
     <string name="write_header_phone_number">Number:</string>
@@ -99,11 +99,6 @@
     <string name="write_header_email_address">Address:</string>
     <string name="write_header_email_subject">Subject:</string>
     <string name="write_header_app_name">App:</string>
-    <string name="title_activity_hms">HMSActivity</string>
-    <string name="title_activity_format">Format</string>
-
-
-    <string name="title_activity_share">Share</string>
     <string name="share_title">Think this app is fantastic?</string>
     <string name="share_subtitle">Why not share it with your friends?</string>
 </resources>
