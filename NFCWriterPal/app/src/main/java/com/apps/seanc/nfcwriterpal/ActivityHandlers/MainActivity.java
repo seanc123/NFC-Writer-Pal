@@ -215,9 +215,11 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_saved_functions) {
 
         } else if (id == R.id.nav_share) {
-
+            Intent shareActivity = new Intent(MainActivity.this, ShareActivity.class);
+            startActivity(shareActivity);
         } else if (id == R.id.nav_contact) {
-
+            Intent contactActivity = new Intent(MainActivity.this, ContactActivity.class);
+            startActivity(contactActivity);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

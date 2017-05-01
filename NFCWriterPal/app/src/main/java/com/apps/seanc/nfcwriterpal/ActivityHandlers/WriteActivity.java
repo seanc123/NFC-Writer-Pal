@@ -157,17 +157,22 @@ public class WriteActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_write) {
-            // Handle the camera action
+            Intent writeActivity = new Intent(WriteActivity.this, WriteActivity.class);
+            startActivity(writeActivity);
         } else if (id == R.id.nav_read) {
-
+            Intent readActivityIntent = new Intent(WriteActivity.this, ReadActivity.class);
+            startActivity(readActivityIntent);
         } else if (id == R.id.nav_format) {
-
+            Intent formatActivity = new Intent(WriteActivity.this, FormatActivity.class);
+            startActivity(formatActivity);
         } else if (id == R.id.nav_saved_functions) {
 
         } else if (id == R.id.nav_share) {
-
+            Intent shareActivity = new Intent(WriteActivity.this, ShareActivity.class);
+            startActivity(shareActivity);
         } else if (id == R.id.nav_contact) {
-
+            Intent contactActivity = new Intent(WriteActivity.this, ContactActivity.class);
+            startActivity(contactActivity);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
