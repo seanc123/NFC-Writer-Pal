@@ -46,7 +46,7 @@ public class ReadActivity extends AppCompatActivity
     private NfcAdapter nfcAdpt;
     private PendingIntent nfcPendingIntent;
     private static final String TAG = ReadActivity.class.getName();
-    private TextView tagID, tagType, tagMessages, tagRecords, maxSize, currentSize;
+    private TextView tagID, tagType, tagMessages, tagRecords, maxSize, currentSize, isWritable;
     private NonScrollListView techListNS, recordListNS;
     private RecordAdapter recordAdapter;
     private int ndefMessageSize;
@@ -78,6 +78,7 @@ public class ReadActivity extends AppCompatActivity
         tagRecords = (TextView) findViewById(R.id.tagRecords);
         maxSize = (TextView) findViewById(R.id.read_tv_maxSize);
         currentSize = (TextView) findViewById(R.id.read_tv_currentSize);
+        isWritable = (TextView) findViewById(R.id.read_tv_writable);
         techListNS = (NonScrollListView) findViewById(R.id.tech_nonscroll_list);
         recordListNS = (NonScrollListView) findViewById(R.id.record_nonscroll_list);
         ndefMessageSize = 0;
@@ -95,10 +96,13 @@ public class ReadActivity extends AppCompatActivity
                 nfcTag.connect();
                 maxSize.setText(String.format(Locale.getDefault(), "%d %s", nfcTag.getMaxSize() , getString(R.string.bytes)));
                 tagType.setText(nfcTag.getType());
+                if(nfcTag.isWritable()){
+                    isWritable.setText(getString(R.string.yes));
+                }
                 nfcTag.close();
 
             } catch (Exception e){
-                Log.d(TAG, ""+e);
+                Log.d(TAG, e.toString());
             }
 
             ArrayAdapter<String> techAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, techConcat(tag.getTechList()));
@@ -122,6 +126,7 @@ public class ReadActivity extends AppCompatActivity
                 tagMessages.setText("0");
                 tagRecords.setText("0");
                 tagType.setText(getString(R.string.tag_unknown));
+                isWritable.setText(getString(R.string.no));
                 maxSize.setText(String.format(Locale.getDefault(), "%d %s", 0 , getString(R.string.bytes)));
                 recordAdapter = new RecordAdapter(ReadActivity.this, R.layout.snippet_record_list, null);
                 recordListNS.setAdapter(recordAdapter);

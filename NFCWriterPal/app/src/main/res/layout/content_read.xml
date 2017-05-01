@@ -90,17 +90,36 @@
                 android:layout_row="4"
                 android:layout_column="2" />
 
+            <TextView
+                android:text="@string/read_writable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/read_tv_writable_header"
+                android:layout_column="0"
+                android:layout_row="5"
+                android:layout_marginTop="20dp"
+                android:textStyle="normal|bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/read_tv_writable"
+                android:layout_column="2"
+                android:layout_row="5"
+                android:layout_marginTop="20dp"
+                android:text=" " />
+
             <Space
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
-                android:layout_row="5"
+                android:layout_row="6"
                 android:layout_column="0" />
 
             <TextView
                 android:text="@string/no_of_messages"
                 android:layout_height="wrap_content"
                 android:id="@+id/ndefMsgsTitle"
-                android:layout_row="6"
+                android:layout_row="7"
                 android:layout_column="0"
                 android:textStyle="normal|bold"
                 android:layout_width="105dp" />
@@ -109,21 +128,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/tagMessages"
-                android:layout_row="6"
+                android:layout_row="7"
                 android:layout_column="2"
                 android:layout_marginTop="5dp" />
 
             <Space
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
-                android:layout_row="7"
+                android:layout_row="8"
                 android:layout_column="0" />
 
             <TextView
                 android:text="@string/no_of_records"
                 android:layout_height="wrap_content"
                 android:id="@+id/ndefRcrdsTitle"
-                android:layout_row="8"
+                android:layout_row="9"
                 android:layout_column="0"
                 android:textStyle="normal|bold"
                 android:layout_width="105dp" />
@@ -132,7 +151,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/tagRecords"
-                android:layout_row="8"
+                android:layout_row="9"
                 android:layout_column="2"
                 android:layout_marginTop="5dp" />
 
@@ -140,13 +159,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:layout_column="0"
-                android:layout_row="9" />
+                android:layout_row="10" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/read_tv_type_title"
-                android:layout_row="10"
+                android:layout_row="11"
                 android:layout_column="0"
                 android:text="@string/tag_type"
                 android:textStyle="normal|bold" />
@@ -155,13 +174,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/read_tv_type"
-                android:layout_row="10"
+                android:layout_row="11"
                 android:layout_column="2" />
 
             <Space
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
-                android:layout_row="11"
+                android:layout_row="12"
                 android:layout_column="0" />
 
             <TextView
@@ -170,7 +189,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/techTitle"
                 android:layout_column="0"
-                android:layout_row="12"
+                android:layout_row="13"
                 android:textStyle="normal|bold"
                 android:layout_columnSpan="3" />
 
@@ -179,7 +198,7 @@
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
 
-                android:layout_row="13"
+                android:layout_row="14"
                 android:layout_column="0"
                 android:layout_columnSpan="3">
             </com.apps.seanc.nfcwriterpal.CutomViews.NonScrollListView>
@@ -187,14 +206,14 @@
             <Space
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
-                android:layout_row="14"
+                android:layout_row="15"
                 android:layout_column="0" />
 
             <TextView
                 android:text="@string/record_list_title"
                 android:layout_height="wrap_content"
                 android:id="@+id/read_tv_records"
-                android:layout_row="15"
+                android:layout_row="16"
                 android:layout_column="0"
                 android:layout_width="wrap_content"
                 android:textStyle="normal|bold"
@@ -205,7 +224,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
-                android:layout_row="16"
+                android:layout_row="17"
                 android:layout_column="0"
                 android:layout_columnSpan="4">
             </com.apps.seanc.nfcwriterpal.CutomViews.NonScrollListView>
