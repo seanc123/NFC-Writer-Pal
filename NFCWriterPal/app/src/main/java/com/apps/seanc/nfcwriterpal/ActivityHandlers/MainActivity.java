@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity
     private NfcAdapter nfcAdpt;
     private PendingIntent nfcPendingIntent;
 
-    private Button writeButton, readButton, formatButton, shareButton;
+    private Button writeButton, readButton, formatButton, shareButton, contactButton;
     private NdefMessageHandler ndefMessageHandler;
 
     private NFCHelper nfcHelper;
@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity
         readButton = (Button) findViewById(R.id.readButton);
         formatButton = (Button) findViewById(R.id.main_btn_format);
         shareButton = (Button) findViewById(R.id.main_btn_share);
+        contactButton = (Button) findViewById(R.id.main_btn_contact);
         setOnClickListeners();
         
     }
@@ -262,6 +263,14 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v) {
                 Intent shareActivity = new Intent(MainActivity.this, ShareActivity.class);
                 startActivity(shareActivity);
+            }
+        });
+
+        contactButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent contactActivity = new Intent(MainActivity.this, ContactActivity.class);
+                startActivity(contactActivity);
             }
         });
 

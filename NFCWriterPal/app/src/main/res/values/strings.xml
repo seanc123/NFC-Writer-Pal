@@ -101,4 +101,21 @@
     <string name="write_header_app_name">App:</string>
     <string name="share_title">Think this app is fantastic?</string>
     <string name="share_subtitle">Why not share it with your friends?</string>
+
+    <string name="contact_bug_title">Find a bug?</string>
+    <string name="contact_bug_body">If you have found a bug, please give a detailed as possible report. This includes:
+                                    \n\u2022 Events leading up to bug.
+                                    \n\u2022 What you were doing when the bug occurred.
+                                    \n\u2022 What happened after the bug occurred.</string>
+    <string name="contact_bug_button">Submit Bug Report</string>
+
+    <string name="contact_query_title">Have a Query?</string>
+    <string name="contact_query_body">Have any questions or queries about this app?
+                                    Feel free to get in contact and I will do my best to answer.</string>
+    <string name="contact_query_button">Submit Query</string>
+
+    <string name="contact_suggestion_title">Suggestion</string>
+    <string name="contact_suggestion_body">Have any suggestions on how to improve this app?
+                                            Submit a suggestion now and try help this app reach its full potential</string>
+    <string name="contact_suggestion_button">Submit Suggestion</string>
 </resources>

@@ -59,4 +59,15 @@
         android:layout_height="120dp"
         android:layout_width="160dp" />
 
+    <Button
+        android:text="@string/contact"
+        android:layout_width="160dp"
+        android:layout_height="120dp"
+        android:layout_alignTop="@+id/main_btn_share"
+        android:layout_alignLeft="@+id/readButton"
+        android:layout_alignStart="@+id/readButton"
+        android:id="@+id/main_btn_contact"
+        android:background="@drawable/btn_yellow"
+        android:drawableLeft="@drawable/ic_menu_contact" />
+
 </RelativeLayout>
