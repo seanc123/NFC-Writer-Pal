@@ -44,7 +44,7 @@
         android:layout_height="70dp"
         android:layout_marginTop="45dp"
         android:id="@+id/share_btn_share"
-        android:background="@drawable/btn_msg_selection"
+        android:background="@drawable/btn_purple"
         android:layout_below="@+id/share_tv_subtitle"
         android:layout_centerHorizontal="true"
         android:layout_width="150dp"

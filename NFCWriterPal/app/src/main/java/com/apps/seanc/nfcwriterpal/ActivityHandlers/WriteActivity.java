@@ -40,14 +40,12 @@ public class WriteActivity extends AppCompatActivity
 
 
     private NfcAdapter nfcAdpt;
-    private NdefMessageHandler ndefMessageHandler;
     private PendingIntent nfcPendingIntent;
 
     private ListView recordsToWriteList;
     private Button addMessageBtn, saveBtn, writeBtn, saveWriteBtn;
     private String TAG = MessageSelection.class.getName();
     private List<NdefRecord> recordList;
-    private WriteListAdapter writeListAdapter;
     private AlertDialog writeDialog;
 
     @Override
@@ -68,7 +66,6 @@ public class WriteActivity extends AppCompatActivity
 
 
         nfcAdpt = NfcAdapter.getDefaultAdapter(this);
-        ndefMessageHandler = new NdefMessageHandler();
         nfcPendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
 
         recordsToWriteList = (ListView) findViewById(R.id.write_listv_records);
@@ -134,6 +131,7 @@ public class WriteActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.write, menu);
+
         return true;
     }
 
@@ -189,7 +187,7 @@ public class WriteActivity extends AppCompatActivity
         writeBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 DialogBoxHandler dialogHandler = new DialogBoxHandler(WriteActivity.this);
-                writeDialog = (AlertDialog) dialogHandler.tapTagDialog();
+                writeDialog = dialogHandler.tapTagDialog();
                 writeDialog.show();
             }
         });
@@ -198,14 +196,15 @@ public class WriteActivity extends AppCompatActivity
     @Override //collects any data sent from the settings screen and applies it accordingly
     protected void onActivityResult(int requestCode, int resultCode, Intent resultIntent){
         super.onActivityResult(requestCode, resultCode, resultIntent);
+        WriteListAdapter writeListAdapter;
 
         if(resultCode != 0) {
 
             switch (requestCode) {
                 case (1): {
                     if (resultIntent.hasExtra("ndefRecord")) {
-                        Log.d(TAG, "NdefRecord parecel Found");
-                        NdefRecordParcel ndefRecordParcel = (NdefRecordParcel) resultIntent.getParcelableExtra("ndefRecord");
+                        Log.d(TAG, "NdefRecord parcel Found");
+                        NdefRecordParcel ndefRecordParcel = resultIntent.getParcelableExtra("ndefRecord");
                         NdefRecord record = ndefRecordParcel.getRecord();
                         recordList.add(record);
 
@@ -214,9 +213,8 @@ public class WriteActivity extends AppCompatActivity
 
                         Log.d(TAG, "Write status not 0");
                     }
-
+                    break;
                 }
-                break;
             }
 
         }

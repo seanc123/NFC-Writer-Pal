@@ -24,7 +24,7 @@
         android:textSize="20sp"
         android:textAlignment="center"
         android:textStyle="normal|bold"
-        android:background="@drawable/btn_format"
+        android:background="@drawable/btn_green"
         android:layout_centerInParent="false" />
 
     <TextView

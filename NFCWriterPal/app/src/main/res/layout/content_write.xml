@@ -58,7 +58,7 @@
                     android:layout_marginLeft= "5dp"
                     android:layout_marginRight="5dp"
                     android:id="@+id/write_btn_save"
-                    android:background="@drawable/btn_save_write"
+                    android:background="@drawable/btn_blue"
                     android:layout_weight="1" />
 
                 <Button
@@ -67,7 +67,7 @@
                     android:layout_marginLeft= "5dp"
                     android:layout_marginRight="5dp"
                     android:id="@+id/write_btn_save_write"
-                    android:background="@drawable/btn_save_write"
+                    android:background="@drawable/btn_blue"
                     android:layout_width="match_parent"
                     android:layout_weight="1" />
 
@@ -78,7 +78,7 @@
                     android:layout_marginLeft= "5dp"
                     android:layout_marginRight="5dp"
                     android:id="@+id/write_btn_write"
-                    android:background="@drawable/btn_save_write"
+                    android:background="@drawable/btn_blue"
                     android:layout_weight="1" />
 
             </LinearLayout>
