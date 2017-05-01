@@ -25,7 +25,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:text="@string/tag_id"
+                android:text="@string/read_tag_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/idTitle"
@@ -53,7 +53,7 @@
                 android:layout_row="1" />
 
             <TextView
-                android:text="@string/tag_max_size"
+                android:text="@string/read_tag_max_size"
                 android:layout_width="105dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/read_tv_maxSizeTitle"
@@ -75,7 +75,7 @@
                 android:layout_column="0" />
 
             <TextView
-                android:text="@string/tag_current_size"
+                android:text="@string/read_tag_current_size"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/read_tv_currentSizeTitle"
@@ -116,7 +116,7 @@
                 android:layout_column="0" />
 
             <TextView
-                android:text="@string/no_of_messages"
+                android:text="@string/read_no_of_messages"
                 android:layout_height="wrap_content"
                 android:id="@+id/ndefMsgsTitle"
                 android:layout_row="7"
@@ -139,7 +139,7 @@
                 android:layout_column="0" />
 
             <TextView
-                android:text="@string/no_of_records"
+                android:text="@string/read_no_of_records"
                 android:layout_height="wrap_content"
                 android:id="@+id/ndefRcrdsTitle"
                 android:layout_row="9"
@@ -167,7 +167,7 @@
                 android:id="@+id/read_tv_type_title"
                 android:layout_row="11"
                 android:layout_column="0"
-                android:text="@string/tag_type"
+                android:text="@string/read_tag_type"
                 android:textStyle="normal|bold" />
 
             <TextView
@@ -184,7 +184,7 @@
                 android:layout_column="0" />
 
             <TextView
-                android:text="@string/tech_list_title"
+                android:text="@string/read_tech_list_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/techTitle"
@@ -210,7 +210,7 @@
                 android:layout_column="0" />
 
             <TextView
-                android:text="@string/record_list_title"
+                android:text="@string/read_record_list_title"
                 android:layout_height="wrap_content"
                 android:id="@+id/read_tv_records"
                 android:layout_row="16"

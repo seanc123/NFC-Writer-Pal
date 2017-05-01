@@ -1,6 +1,5 @@
 package com.apps.seanc.nfcwriterpal.Tools;
 
-import android.app.Dialog;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -244,7 +243,7 @@ public class DialogBoxHandler extends ListActivity{
                         dialog.cancel();
                     }
                 })
-                .setNeutralButton(context.getString(R.string.use_location), null)
+                .setNeutralButton(context.getString(R.string.dialog_location_use_current), null)
                 .setPositiveButton(context.getString(R.string.enter), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
