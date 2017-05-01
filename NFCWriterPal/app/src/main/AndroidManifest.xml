@@ -81,6 +81,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.apps.seanc.nfcwriterpal.ActivityHandlers.MainActivity" />
         </activity>
+        <activity
+            android:name=".ActivityHandlers.ShareActivity"
+            android:label="@string/title_activity_share"
+            android:parentActivityName=".ActivityHandlers.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.apps.seanc.nfcwriterpal.ActivityHandlers.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

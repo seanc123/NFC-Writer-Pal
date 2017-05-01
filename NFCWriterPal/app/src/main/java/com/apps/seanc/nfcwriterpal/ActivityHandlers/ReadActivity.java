@@ -97,6 +97,7 @@ public class ReadActivity extends AppCompatActivity
     protected void onNewIntent(Intent intent){
         Log.d(TAG, "onNewIntent");
         tapDialog.dismiss();
+        vibrate();
         if(NfcAdapter.ACTION_TAG_DISCOVERED.equals(intent.getAction())){
             ndefMessageSize = 0;
             Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
@@ -121,7 +122,6 @@ public class ReadActivity extends AppCompatActivity
 
 
 
-            vibrate();
 
             Parcelable[] messages = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
             if (messages != null) {
@@ -298,7 +298,7 @@ public class ReadActivity extends AppCompatActivity
     }
 
 
-    public String[] techConcat(String[] techList){
+    private String[] techConcat(String[] techList){
         String techPrefix = "\\bandroid\\b.\\bnfc\\b.\\btech\\b.";
         for(int i = 0; i < techList.length; i++){
             techList[i] = techList[i].replaceAll(techPrefix,"");
