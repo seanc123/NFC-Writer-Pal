@@ -14,6 +14,7 @@ import android.os.Vibrator;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -30,6 +31,7 @@ import android.widget.TextView;
 import com.apps.seanc.nfcwriterpal.ArrayAdapters.RecordAdapter;
 import com.apps.seanc.nfcwriterpal.CutomViews.NonScrollListView;
 import com.apps.seanc.nfcwriterpal.R;
+import com.apps.seanc.nfcwriterpal.Tools.DialogBoxHandler;
 
 import org.ndeftools.Message;
 import org.ndeftools.Record;
@@ -49,6 +51,8 @@ public class ReadActivity extends AppCompatActivity
     private TextView tagID, tagType, tagMessages, tagRecords, maxSize, currentSize, isWritable;
     private NonScrollListView techListNS, recordListNS;
     private RecordAdapter recordAdapter;
+    private AlertDialog tapDialog;
+
     private int ndefMessageSize;
 
 
@@ -82,12 +86,17 @@ public class ReadActivity extends AppCompatActivity
         techListNS = (NonScrollListView) findViewById(R.id.tech_nonscroll_list);
         recordListNS = (NonScrollListView) findViewById(R.id.record_nonscroll_list);
         ndefMessageSize = 0;
+
+        DialogBoxHandler dialogBoxHandler = new DialogBoxHandler(this);
+        tapDialog = dialogBoxHandler.tapTagDialog();
+        tapDialog.show();
     }
 
     //Write bool expression for if in writeMode
     @Override
     protected void onNewIntent(Intent intent){
         Log.d(TAG, "onNewIntent");
+        tapDialog.dismiss();
         if(NfcAdapter.ACTION_TAG_DISCOVERED.equals(intent.getAction())){
             ndefMessageSize = 0;
             Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
