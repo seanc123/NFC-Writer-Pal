@@ -107,8 +107,6 @@ public class ShareActivity extends AppCompatActivity
         } else if (id == R.id.nav_format) {
             Intent formatActivity = new Intent(ShareActivity.this, FormatActivity.class);
             startActivity(formatActivity);
-        } else if (id == R.id.nav_saved_functions) {
-
         } else if (id == R.id.nav_share) {
             Intent shareActivity = new Intent(ShareActivity.this, ShareActivity.class);
             startActivity(shareActivity);

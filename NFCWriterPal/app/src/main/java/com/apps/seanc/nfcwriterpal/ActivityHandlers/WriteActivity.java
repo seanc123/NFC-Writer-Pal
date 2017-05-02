@@ -109,6 +109,7 @@ public class WriteActivity extends AppCompatActivity
 
 
                     } catch (Exception e) {
+                        Toast.makeText(WriteActivity.this, "Message write failed!", Toast.LENGTH_LONG).show();
                         Log.d(TAG, e.toString());
                     }
                 }
@@ -130,7 +131,7 @@ public class WriteActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.write, menu);
+        //getMenuInflater().inflate(R.menu.write, menu);
 
         return true;
     }
@@ -165,8 +166,6 @@ public class WriteActivity extends AppCompatActivity
         } else if (id == R.id.nav_format) {
             Intent formatActivity = new Intent(WriteActivity.this, FormatActivity.class);
             startActivity(formatActivity);
-        } else if (id == R.id.nav_saved_functions) {
-
         } else if (id == R.id.nav_share) {
             Intent shareActivity = new Intent(WriteActivity.this, ShareActivity.class);
             startActivity(shareActivity);

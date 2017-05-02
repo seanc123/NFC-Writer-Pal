@@ -14,10 +14,6 @@
             android:id="@+id/nav_format"
             android:icon="@drawable/ic_menu_wipe"
             android:title="@string/format" />
-        <item
-            android:id="@+id/nav_saved_functions"
-            android:icon="@drawable/ic_menu_saved_functions"
-            android:title="Saved Functions" />
     </group>
 
     <item android:title="@string/communicate">

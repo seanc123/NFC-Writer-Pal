@@ -95,8 +95,6 @@ public class ContactActivity extends AppCompatActivity
         } else if (id == R.id.nav_format) {
             Intent formatActivity = new Intent(ContactActivity.this, FormatActivity.class);
             startActivity(formatActivity);
-        } else if (id == R.id.nav_saved_functions) {
-
         } else if (id == R.id.nav_share) {
             Intent shareActivity = new Intent(ContactActivity.this, ShareActivity.class);
             startActivity(shareActivity);

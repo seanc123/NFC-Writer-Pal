@@ -42,6 +42,7 @@
     <string name="record_type">Type:</string>
     <string name="record_size">Size:</string>
 
+
     <string name="read_tag_id">Tag ID:</string>
     <string name="read_tag_max_size">Tag maximum size:</string>
     <string name="read_tag_current_size">Tag current size:</string>
@@ -93,6 +94,8 @@
     <string name="ms_location">Location</string>
     <string name="ms_hms">Home Management System</string>
 
+    <string name="write_add_record">Add a record to write</string>
+    <string name="write_remove">Remove All</string>
     <string name="write_header_request_type">Request Type:</string>
     <string name="write_header_webpage">Webpage:</string>
     <string name="write_header_phone_number">Number:</string>
@@ -100,6 +103,8 @@
     <string name="write_header_email_address">Address:</string>
     <string name="write_header_email_subject">Subject:</string>
     <string name="write_header_app_name">App:</string>
+
+
     <string name="share_title">Think this app is fantastic?</string>
     <string name="share_subtitle">Why not share it with your friends?</string>
 

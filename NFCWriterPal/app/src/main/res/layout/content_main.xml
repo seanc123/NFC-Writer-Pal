@@ -13,61 +13,82 @@
     tools:context="com.apps.seanc.nfcwriterpal.ActivityHandlers.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
-    <Button
-        android:text="@string/read"
-        android:id="@+id/readButton"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:drawableLeft="@drawable/ic_menu_read"
-        android:background="@drawable/btn_blue"
-        android:layout_height="120dp"
-        android:layout_width="160dp" />
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <Button
-        android:text="@string/write"
-        android:id="@+id/writeButton"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:drawableLeft="@drawable/ic_menu_write"
-        android:background="@drawable/btn_orange"
-        android:layout_height="120dp"
-        android:layout_width="160dp" />
+        <Button
+            android:text="@string/write"
+            android:id="@+id/writeButton"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:drawableLeft="@drawable/ic_menu_write"
+            android:background="@drawable/btn_orange"
+            android:layout_height="120dp"
+            android:layout_width="match_parent"
+            android:layout_column="0"
+            android:layout_row="0"
+            android:layout_columnSpan="2" />
 
-    <Button
-        android:text="Share"
-        android:layout_marginTop="10dp"
-        android:id="@+id/main_btn_share"
-        android:layout_below="@+id/main_btn_format"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:drawableLeft="@drawable/ic_menu_share"
-        android:background="@drawable/btn_red"
-        android:layout_height="120dp"
-        android:layout_width="160dp" />
+        <Button
+            android:text="Share"
+            android:id="@+id/main_btn_share"
+            android:layout_below="@+id/main_btn_format"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:drawableLeft="@drawable/ic_menu_share"
+            android:background="@drawable/btn_red"
+            android:layout_height="120dp"
+            android:layout_width="160dp"
+            android:layout_row="2"
+            android:layout_column="0"
+            android:layout_marginTop="15dp" />
 
-    <Button
-        android:text="@string/format"
-        android:layout_marginTop="10dp"
-        android:id="@+id/main_btn_format"
-        android:drawableLeft="@drawable/ic_menu_wipe"
-        android:layout_below="@+id/writeButton"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:background="@drawable/btn_green"
-        android:layout_height="120dp"
-        android:layout_width="160dp" />
+        <Button
+            android:text="@string/format"
+            android:id="@+id/main_btn_format"
+            android:drawableLeft="@drawable/ic_menu_wipe"
+            android:layout_below="@+id/writeButton"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="@drawable/btn_green"
+            android:layout_height="120dp"
+            android:layout_width="160dp"
+            android:layout_column="0"
+            android:layout_row="1"
+            android:layout_marginTop="15dp" />
 
-    <Button
-        android:text="@string/contact"
-        android:layout_width="160dp"
-        android:layout_height="120dp"
-        android:layout_alignTop="@+id/main_btn_share"
-        android:layout_alignLeft="@+id/readButton"
-        android:layout_alignStart="@+id/readButton"
-        android:id="@+id/main_btn_contact"
-        android:background="@drawable/btn_yellow"
-        android:drawableLeft="@drawable/ic_menu_contact" />
+        <Button
+            android:text="@string/read"
+            android:id="@+id/readButton"
+            android:drawableLeft="@drawable/ic_menu_read"
+            android:background="@drawable/btn_blue"
+            android:layout_height="120dp"
+            android:layout_width="160dp"
+            android:layout_alignBaseline="@+id/main_btn_format"
+            android:layout_alignBottom="@+id/main_btn_format"
+            android:layout_toRightOf="@+id/main_btn_format"
+            android:layout_toEndOf="@+id/main_btn_format"
+            android:layout_column="1"
+            android:layout_row="1"
+            android:layout_gravity="right"
+            android:layout_marginTop="15dp" />
+
+        <Button
+            android:text="@string/contact"
+            android:layout_width="160dp"
+            android:layout_height="120dp"
+            android:id="@+id/main_btn_contact"
+            android:background="@drawable/btn_yellow"
+            android:drawableLeft="@drawable/ic_menu_contact"
+            android:layout_below="@+id/readButton"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_row="2"
+            android:layout_column="1"
+            android:layout_gravity="right"
+            android:layout_marginTop="15dp" />
+    </GridLayout>
 
 </RelativeLayout>
