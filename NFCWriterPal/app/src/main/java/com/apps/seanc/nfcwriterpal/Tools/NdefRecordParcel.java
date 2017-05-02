@@ -30,8 +30,7 @@ public class NdefRecordParcel implements Parcelable {
 
     public NdefRecord record;
 
-    public NdefRecordParcel() {
-    }
+    private NdefRecordParcel() {}
 
     public NdefRecordParcel( NdefRecord record ) {
         this.record = record;

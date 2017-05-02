@@ -144,10 +144,7 @@ public class WriteListAdapter extends ArrayAdapter<NdefRecord> {
                     varTwoHeader.setVisibility(View.GONE);
                     varThreeHeader.setVisibility(View.GONE);
 
-                } /*else if (ndefToolRecord instanceof SmartPosterRecord){
-                    recordType.setText(ndefToolRecord.getClass().getSimpleName());
-
-                }*/
+                }
             }
 
         }
@@ -241,10 +238,6 @@ public class WriteListAdapter extends ArrayAdapter<NdefRecord> {
             writeTypeImage.setColorFilter(ContextCompat.getColor(context,android.R.color.holo_red_dark));
 
         }
-
-        /*for(int x = 0; x < uriSubStrings.length; x++){
-            Log.d(TAG, x+ " "+ uriSubStrings[x]);
-        }*/
 
 
     }

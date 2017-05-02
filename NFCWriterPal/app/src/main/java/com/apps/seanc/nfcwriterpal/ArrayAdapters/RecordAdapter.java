@@ -68,14 +68,6 @@ public class RecordAdapter extends ArrayAdapter<Record> {
             recordSize.setText(Integer.toString(record.toByteArray().length) + " Bytes");
             recordType.setText(record.getClass().getSimpleName());
 
-
-//            TextView appName = (TextView) view.findViewById(R.id.app_name);
-//            TextView packageName = (TextView) view.findViewById(R.id.app_package);
-//            ImageView iconview = (ImageView) view.findViewById(R.id.app_icon);
-
-//            appName.setText(data.loadLabel(packageManager));
-//            packageName.setText(data.packageName);
-//            iconview.setImageDrawable(data.loadIcon(packageManager));
         }
         return view;
     }

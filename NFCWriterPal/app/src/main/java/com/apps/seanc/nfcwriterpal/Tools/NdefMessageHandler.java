@@ -59,13 +59,6 @@ public class NdefMessageHandler {
 
         Message composedMessage = ndefRecord;
 
-                /*instagramMessage("1");
-        if(app.equalsIgnoreCase("Facebook")){
-            composedMessage = facebookMessage("1");
-        } else if(app.equalsIgnoreCase("Spotify")){
-            composedMessage = spotifyMessage("1");
-        }*/
-
         NdefMessage ndefMessage = composedMessage.getNdefMessage();
         return ndefMessage;
     }
