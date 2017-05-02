@@ -43,10 +43,11 @@ public class WriteActivity extends AppCompatActivity
     private PendingIntent nfcPendingIntent;
 
     private ListView recordsToWriteList;
-    private Button addMessageBtn, saveBtn, writeBtn, saveWriteBtn;
+    private Button addMessageBtn, removeBtn, writeBtn;
     private String TAG = MessageSelection.class.getName();
     private List<NdefRecord> recordList;
     private AlertDialog writeDialog;
+    private WriteListAdapter writeListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,9 +71,8 @@ public class WriteActivity extends AppCompatActivity
 
         recordsToWriteList = (ListView) findViewById(R.id.write_listv_records);
         addMessageBtn = (Button) findViewById(R.id.write_btn_new_msg);
-        saveBtn = (Button) findViewById(R.id.write_btn_save);
         writeBtn = (Button) findViewById(R.id.write_btn_write);
-        saveWriteBtn = (Button) findViewById(R.id.write_btn_save_write);
+        removeBtn = (Button) findViewById(R.id.write_btn_remove);
         recordList = new ArrayList<NdefRecord>();
 
         setOnClickListeners();
@@ -195,12 +195,20 @@ public class WriteActivity extends AppCompatActivity
                 writeDialog.show();
             }
         });
+
+        removeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recordList = new ArrayList<NdefRecord>();
+                writeListAdapter = new WriteListAdapter(WriteActivity.this, R.layout.snippet_write_list, recordList);
+                recordsToWriteList.setAdapter(writeListAdapter);
+            }
+        });
     }
 
     @Override //collects any data sent from the settings screen and applies it accordingly
     protected void onActivityResult(int requestCode, int resultCode, Intent resultIntent){
         super.onActivityResult(requestCode, resultCode, resultIntent);
-        WriteListAdapter writeListAdapter;
 
         if(resultCode != 0) {
 
