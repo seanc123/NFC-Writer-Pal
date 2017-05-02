@@ -104,6 +104,10 @@
     <string name="write_header_email_subject">Subject:</string>
     <string name="write_header_app_name">App:</string>
 
+    <string name="format_tag_formatted">Tag Formatted as NDEF</string>
+    <string name="format_not_writable">Tag is not Writable</string>
+    <string name="format_tag_wiped">Tag Wiped</string>
+
 
     <string name="share_title">Think this app is fantastic?</string>
     <string name="share_subtitle">Why not share it with your friends?</string>

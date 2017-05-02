@@ -21,11 +21,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.apps.seanc.nfcwriterpal.R;
 import com.apps.seanc.nfcwriterpal.Tools.DialogBoxHandler;
@@ -95,7 +93,7 @@ public class FormatActivity extends AppCompatActivity
 
                             try {
                                 formatable.format(ndefMessage);
-                                resultText.setText("Tag formatted as NDEF");
+                                resultText.setText(getString(R.string.format_tag_formatted));
                             } catch (Exception e) {
                                 Log.d(TAG, e.toString());
                                 Log.d(TAG, "Unable to format tag");
@@ -130,7 +128,7 @@ public class FormatActivity extends AppCompatActivity
 
                     try {
                         if (!nfcTag.isWritable()) {
-                            resultText.setText("Tag is not writable");
+                            resultText.setText(getString(R.string.format_not_writable));
                             wipeDialog.dismiss();
                             wipeDialog = null;
 
@@ -141,9 +139,10 @@ public class FormatActivity extends AppCompatActivity
                             nfcTag.connect();
                             nfcTag.writeNdefMessage(new NdefMessage(new NdefRecord(NdefRecord.TNF_EMPTY, null, null, null)));
                             nfcTag.close();
+                            vibrate();
                             wipeDialog.dismiss();
                             wipeDialog = null;
-                            resultText.setText("Tag wiped");
+                            resultText.setText(getString(R.string.format_tag_wiped));
                         }
                     } catch (Exception e) {
                         Log.d(TAG, e.toString());
@@ -161,28 +160,6 @@ public class FormatActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        //getMenuInflater().inflate(R.menu.format, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
