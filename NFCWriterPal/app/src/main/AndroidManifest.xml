@@ -11,9 +11,7 @@
         android:name="android.hardware.nfc"
         android:required="true" />
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
@@ -50,7 +48,12 @@
             android:name=".ActivityHandlers.MessageSelection"
             android:label="@string/title_activity_message_selection"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:parentActivityName=".ActivityHandlers.WriteActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.apps.seanc.nfcwriterpal.ActivityHandlers.WriteActivity" />
+        </activity>
         <activity
             android:name=".ActivityHandlers.WriteActivity"
             android:label="@string/title_activity_write"
@@ -75,6 +78,7 @@
         <activity
             android:name=".ActivityHandlers.FormatActivity"
             android:label="@string/title_activity_format"
+            android:screenOrientation="portrait"
             android:parentActivityName=".ActivityHandlers.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -84,6 +88,7 @@
         <activity
             android:name=".ActivityHandlers.ShareActivity"
             android:label="@string/title_activity_share"
+            android:screenOrientation="portrait"
             android:parentActivityName=".ActivityHandlers.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -93,7 +98,13 @@
         <activity
             android:name=".ActivityHandlers.ContactActivity"
             android:label="@string/title_activity_contact"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:screenOrientation="portrait"
+            android:parentActivityName=".ActivityHandlers.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.apps.seanc.nfcwriterpal.ActivityHandlers.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
