@@ -441,7 +441,7 @@ public class DialogBoxHandler extends ListActivity{
     public AlertDialog tapTagDialog(){
 
         TextView title = new TextView(context);
-        title.setText("Tap Device Off NFC Tag");
+        title.setText(context.getString(R.string.dialog_tap_title));
         title.setBackgroundColor(Color.DKGRAY);
         title.setPadding(10, 10, 10, 10);
         title.setGravity(Gravity.CENTER);
@@ -463,7 +463,7 @@ public class DialogBoxHandler extends ListActivity{
 
     public AlertDialog unformattableDialog(){
         TextView title = new TextView(context);
-        title.setText("Tag Not Formattable");
+        title.setText(context.getString(R.string.dialog_unformattable_title));
         title.setBackgroundColor(Color.DKGRAY);
         title.setPadding(10, 10, 10, 10);
         title.setGravity(Gravity.CENTER);
@@ -484,7 +484,7 @@ public class DialogBoxHandler extends ListActivity{
                     }
                 })
                 .setCustomTitle(title)
-                .setMessage("Would you like to wipe all data on the tag instead?");
+                .setMessage(context.getString(R.string.dialog_unformattable_message));
 
         return writeDialogBuilder.create();
     }

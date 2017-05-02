@@ -2,6 +2,7 @@ package com.apps.seanc.nfcwriterpal.ActivityHandlers;
 
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.nfc.NdefMessage;
@@ -156,9 +157,22 @@ public class WriteActivity extends AppCompatActivity
 
         writeBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                DialogBoxHandler dialogHandler = new DialogBoxHandler(WriteActivity.this);
-                writeDialog = dialogHandler.tapTagDialog();
-                writeDialog.show();
+                if(recordList.size() == 0){
+                    final AlertDialog.Builder noRecordDialog = new AlertDialog.Builder(WriteActivity.this);
+                    noRecordDialog.setTitle(getString(R.string.write_dialog_no_records))
+                            .setPositiveButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    noRecordDialog.create().show();
+                } else{
+                    DialogBoxHandler dialogHandler = new DialogBoxHandler(WriteActivity.this);
+                    writeDialog = dialogHandler.tapTagDialog();
+                    writeDialog.show();
+                }
+
             }
         });
 

@@ -46,8 +46,7 @@ public class HMSManagerActivity extends Activity {
                 String payloadString = new String(payload);
                 Log.d(TAG, "Payload = " + payloadString);
 
-
-                Toast.makeText(HMSManagerActivity.this, payloadString, Toast.LENGTH_LONG).show();
+                Toast.makeText(HMSManagerActivity.this, "Sending Request " + payloadString, Toast.LENGTH_LONG).show();
 
                 /*Log.d(TAG, "Running Apache Http");
                 controller.apacheHttp(payloadString);*/

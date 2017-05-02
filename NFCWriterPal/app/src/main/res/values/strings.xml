@@ -75,6 +75,9 @@
     <string name="dialog_hms_ip">Enter HMS IP Address</string>
     <string name="dialog_hms_script_location">Enter script location (e.g /functions/security)</string>
     <string name="dialog_hms_script_name">Enter Script Name</string>
+    <string name="dialog_tap_title">Tap Device Off NFC Tag</string>
+    <string name="dialog_unformattable_title">Tag Not Formattable</string>
+    <string name="dialog_unformattable_message">Would you like to wipe all data on the tag instead?</string>
 
     <string name="error_web_required">Webpage Address Required</string>
     <string name="error_phone_required">Phone Number Required</string>
@@ -103,6 +106,7 @@
     <string name="write_header_email_address">Address:</string>
     <string name="write_header_email_subject">Subject:</string>
     <string name="write_header_app_name">App:</string>
+    <string name="write_dialog_no_records">No records to write to tag</string>
 
     <string name="format_tag_formatted">Tag Formatted as NDEF</string>
     <string name="format_not_writable">Tag is not Writable</string>
