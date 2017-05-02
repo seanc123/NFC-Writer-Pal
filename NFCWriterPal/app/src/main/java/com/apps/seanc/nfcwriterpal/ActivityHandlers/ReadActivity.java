@@ -221,9 +221,6 @@ public class ReadActivity extends AppCompatActivity
     private void iterateNdefMessages(List<Record> records){
         for(int k = 0; k < records.size(); k++){
             Record record = records.get(k);
-//            Log.d(TAG, "Record # " + k + " is of class " + record.getClass().getName());
-//            Log.d(TAG, "Record Size: "+record.toByteArray().length+" bytes");
-//            Log.d(TAG, "Record Type: "+record.getClass().getSimpleName());
 
             if(record instanceof AndroidApplicationRecord){
                 Log.d(TAG, "APPLICATION RECORD FOUND");
