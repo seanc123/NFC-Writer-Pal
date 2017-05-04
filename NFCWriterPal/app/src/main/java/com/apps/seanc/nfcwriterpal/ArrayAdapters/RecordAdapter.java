@@ -23,14 +23,12 @@ public class RecordAdapter extends ArrayAdapter<Record> {
 
     private List<Record> recordList = null;
     private Context context;
-    private PackageManager packageManager;
     public String TAG = RecordAdapter.class.getName();
 
     public RecordAdapter(Context context, int layoutId, List<Record> recordList){
         super(context, layoutId, recordList);
         this.context = context;
         this.recordList = recordList;
-        this.packageManager = context.getPackageManager();
     }
 
     @Override
@@ -65,7 +63,7 @@ public class RecordAdapter extends ArrayAdapter<Record> {
             TextView recordType = (TextView) view.findViewById(R.id.record_type);
 
             recordNo.setText(Integer.toString(position));
-            recordSize.setText(Integer.toString(record.toByteArray().length) + " Bytes");
+            recordSize.setText(Integer.toString(record.toByteArray().length) + " " + context.getString(R.string.bytes));
             recordType.setText(record.getClass().getSimpleName());
 
         }

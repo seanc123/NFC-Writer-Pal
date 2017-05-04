@@ -4,19 +4,18 @@ package com.apps.seanc.nfcwriterpal.ArrayAdapters;
  * Created by seanc on 24/03/2017.
  */
 
-        import java.util.List;
+import java.util.List;
 
-        import android.content.Context;
-        import android.content.pm.ApplicationInfo;
-        import android.content.pm.PackageManager;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.ArrayAdapter;
-        import android.widget.ImageView;
-        import android.widget.TextView;
-
-        import com.apps.seanc.nfcwriterpal.R;
+import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+import com.apps.seanc.nfcwriterpal.R;
 
 public class ApplicationAdapter extends ArrayAdapter<ApplicationInfo> {
     private List<ApplicationInfo> appsList = null;

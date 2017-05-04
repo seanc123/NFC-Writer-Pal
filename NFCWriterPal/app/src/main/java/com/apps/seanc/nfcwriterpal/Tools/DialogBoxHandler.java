@@ -366,6 +366,7 @@ public class DialogBoxHandler extends ListActivity{
                 ArrayAdapter<String> httpAdapter = new ArrayAdapter<String>(context, R.layout.support_simple_spinner_dropdown_item, httpTypes);
                 httpAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
 
+
                 httpSpinner.setAdapter(httpAdapter);
 
                 Button button = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE);
@@ -413,13 +414,6 @@ public class DialogBoxHandler extends ListActivity{
 
         hmsDialog.show();
 
-        hmsDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-            }
-        });
 
     }
 
