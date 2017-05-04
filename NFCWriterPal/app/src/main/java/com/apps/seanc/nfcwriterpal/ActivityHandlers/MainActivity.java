@@ -112,7 +112,6 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view){
                 Intent writeActivity = new Intent(MainActivity.this, WriteActivity.class);
                 startActivity(writeActivity);
-                //startActivityForResult(intent, 1);
             }
         });
 

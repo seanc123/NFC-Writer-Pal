@@ -266,13 +266,30 @@ public class DialogBoxHandler extends ListActivity{
                         EditText latitude = (EditText) locationDialog.findViewById(R.id.dl_et_latitude);
                         EditText longitude = (EditText) locationDialog.findViewById(R.id.dl_et_longitude);
                         LocationManager lm = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+
+                        lm = (LocationManager)context.getSystemService(LOCATION_SERVICE);
+                        List<String> providers = lm.getProviders(true);
+                        Location bestLocation = null;
+
                         try {
-                            Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                            double currentLongitude = location.getLongitude();
-                            double currentLatitude = location.getLatitude();
+                            for (String provider : providers) {
+                                Location l = lm.getLastKnownLocation(provider);
+                                if (l == null) {
+                                    continue;
+                                }
+                                if (bestLocation == null || l.getAccuracy() < bestLocation.getAccuracy()) {
+                                    bestLocation = l;
+                                }
+                            }
+
+                            double currentLongitude = bestLocation.getLongitude();
+                            double currentLatitude = bestLocation.getLatitude();
+
                             latitude.setText(Double.toString(currentLatitude));
                             longitude.setText(Double.toString(currentLongitude));
-                        } catch (SecurityException e){
+                        } catch(SecurityException se){
+                            Log.d(TAG, se.toString());
+                        } catch (Exception e){
                             Log.d(TAG, e.toString());
                         }
                     }
