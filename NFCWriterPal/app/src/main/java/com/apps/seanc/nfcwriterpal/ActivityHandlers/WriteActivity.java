@@ -43,7 +43,7 @@ public class WriteActivity extends AppCompatActivity
 
     private ListView recordsToWriteList;
     private Button addMessageBtn, removeBtn, writeBtn;
-    private String TAG = MessageSelection.class.getName();
+    private String TAG = RecordSelection.class.getName();
     private List<NdefRecord> recordList;
     private AlertDialog writeDialog;
     private WriteListAdapter writeListAdapter;
@@ -148,7 +148,7 @@ public class WriteActivity extends AppCompatActivity
 
         addMessageBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent messageSelectionIntent = new Intent(WriteActivity.this, MessageSelection.class);
+                Intent messageSelectionIntent = new Intent(WriteActivity.this, RecordSelection.class);
                 startActivityForResult(messageSelectionIntent, 1);
             }
         });

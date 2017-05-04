@@ -8,7 +8,7 @@
 
     <string name="title_activity_app_selection">App Selection</string>
     <string name="title_activity_read">Read Tag</string>
-    <string name="title_activity_message_selection">Message Selection</string>
+    <string name="title_activity_record_selection">Record Selection</string>
     <string name="title_activity_write">Write To Tag</string>
     <string name="title_activity_hms">HMSActivity</string>
     <string name="title_activity_format">Format</string>

@@ -1,13 +1,10 @@
 package com.apps.seanc.nfcwriterpal.ActivityHandlers;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.net.Uri;
 import android.nfc.NdefRecord;
 import android.os.Bundle;
-import android.os.Vibrator;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -16,11 +13,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Spinner;
 
 import com.apps.seanc.nfcwriterpal.R;
 import com.apps.seanc.nfcwriterpal.Tools.DialogBoxHandler;
@@ -28,10 +22,10 @@ import com.apps.seanc.nfcwriterpal.Tools.NdefRecordParcel;
 
 import java.nio.charset.Charset;
 
-public class MessageSelection extends AppCompatActivity
+public class RecordSelection extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private static final String TAG = MessageSelection.class.getName();
+    private static final String TAG = RecordSelection.class.getName();
 
     private Button webpage, text, email, phone, location, app, hms;
     private static String uriString;
@@ -44,7 +38,7 @@ public class MessageSelection extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_message_selection);
+        setContentView(R.layout.activity_record_selection);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -65,7 +59,7 @@ public class MessageSelection extends AppCompatActivity
         app = (Button) findViewById(R.id.ms_btn_app);
         hms = (Button) findViewById(R.id.ms_btn_hms);
 
-        dialogBoxHandler = new DialogBoxHandler(MessageSelection.this, this);
+        dialogBoxHandler = new DialogBoxHandler(RecordSelection.this, this);
 
         setOnClickListeners();
     }
@@ -77,19 +71,19 @@ public class MessageSelection extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_write) {
-            Intent writeActivity = new Intent(MessageSelection.this, WriteActivity.class);
+            Intent writeActivity = new Intent(RecordSelection.this, WriteActivity.class);
             startActivity(writeActivity);
         } else if (id == R.id.nav_read) {
-            Intent readActivityIntent = new Intent(MessageSelection.this, ReadActivity.class);
+            Intent readActivityIntent = new Intent(RecordSelection.this, ReadActivity.class);
             startActivity(readActivityIntent);
         } else if (id == R.id.nav_format) {
-            Intent formatActivity = new Intent(MessageSelection.this, FormatActivity.class);
+            Intent formatActivity = new Intent(RecordSelection.this, FormatActivity.class);
             startActivity(formatActivity);
         } else if (id == R.id.nav_share) {
-            Intent shareActivity = new Intent(MessageSelection.this, ShareActivity.class);
+            Intent shareActivity = new Intent(RecordSelection.this, ShareActivity.class);
             startActivity(shareActivity);
         } else if (id == R.id.nav_contact) {
-            Intent contactActivity = new Intent(MessageSelection.this, ContactActivity.class);
+            Intent contactActivity = new Intent(RecordSelection.this, ContactActivity.class);
             startActivity(contactActivity);
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

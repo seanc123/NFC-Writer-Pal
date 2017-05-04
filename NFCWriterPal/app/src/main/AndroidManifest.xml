@@ -45,8 +45,8 @@
                 android:value="com.apps.seanc.nfcwriterpal.ActivityHandlers.MainActivity" />
         </activity>
         <activity
-            android:name=".ActivityHandlers.MessageSelection"
-            android:label="@string/title_activity_message_selection"
+            android:name=".ActivityHandlers.RecordSelection"
+            android:label="@string/title_activity_record_selection"
             android:screenOrientation="portrait"
             android:parentActivityName=".ActivityHandlers.WriteActivity"
             android:theme="@style/AppTheme.NoActionBar">
