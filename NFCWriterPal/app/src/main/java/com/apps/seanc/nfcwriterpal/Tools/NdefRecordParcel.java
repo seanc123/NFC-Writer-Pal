@@ -10,6 +10,10 @@ import android.os.Parcelable;
 
 public class NdefRecordParcel implements Parcelable {
 
+    private NdefRecord record;
+
+    private NdefRecordParcel() {}
+
     public static final Parcelable.Creator<NdefRecordParcel> CREATOR = new Parcelable.Creator<NdefRecordParcel>() {
         public NdefRecordParcel createFromParcel(Parcel source) {
             final NdefRecordParcel recordParcel = new NdefRecordParcel();
@@ -27,10 +31,6 @@ public class NdefRecordParcel implements Parcelable {
     public NdefRecord getRecord() {
         return record;
     }
-
-    public NdefRecord record;
-
-    private NdefRecordParcel() {}
 
     public NdefRecordParcel( NdefRecord record ) {
         this.record = record;

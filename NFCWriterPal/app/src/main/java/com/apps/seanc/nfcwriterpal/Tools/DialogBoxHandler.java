@@ -23,7 +23,7 @@ import android.widget.TextView;
 import com.apps.seanc.nfcwriterpal.ActivityHandlers.FormatActivity;
 import com.apps.seanc.nfcwriterpal.ArrayAdapters.ApplicationAdapter;
 import com.apps.seanc.nfcwriterpal.R;
-import com.apps.seanc.nfcwriterpal.ActivityHandlers.MessageSelection;
+import com.apps.seanc.nfcwriterpal.ActivityHandlers.RecordSelection;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -43,7 +43,7 @@ public class DialogBoxHandler extends ListActivity{
     private static final String TAG = DialogBoxHandler.class.getName();
 
     private Context context;
-    private MessageSelection ms;
+    private RecordSelection ms;
     private FormatActivity formatActivity;
 
 
@@ -52,7 +52,7 @@ public class DialogBoxHandler extends ListActivity{
         this.context = context;
     }
 
-    public DialogBoxHandler(Context context, MessageSelection ms){
+    public DialogBoxHandler(Context context, RecordSelection ms){
         this.context = context;
         this.ms =  ms;
     }
