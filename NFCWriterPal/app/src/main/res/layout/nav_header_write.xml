@@ -12,13 +12,12 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="match_parent"
         app:srcCompat="@mipmap/ic_nav_header"
-        android:scaleType="fitXY"
         android:cropToPadding="false"
         android:adjustViewBounds="false"
-        android:layout_weight="1"
         android:baselineAlignBottom="false"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_gravity="center_vertical" />
 
 </LinearLayout>
