@@ -48,12 +48,11 @@ public class HMSManagerActivity extends Activity {
 
                 Toast.makeText(HMSManagerActivity.this, "Sending Request " + payloadString, Toast.LENGTH_LONG).show();
 
-                /*Log.d(TAG, "Running Apache Http");
-                controller.apacheHttp(payloadString);*/
-
                 Log.d(TAG, "Running Ok Http");
                 controller.okHttp(payloadString);
 
+                /*Log.d(TAG, "Running Apache Http");
+                controller.apacheHttp(payloadString);*/
                 /*Log.d(TAG, "Running timeout task");
                 controller.timeoutHttp(payloadString);*/
 

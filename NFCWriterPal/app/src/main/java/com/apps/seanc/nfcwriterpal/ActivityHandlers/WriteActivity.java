@@ -24,12 +24,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.apps.seanc.nfcwriterpal.ArrayAdapters.WriteListAdapter;
 import com.apps.seanc.nfcwriterpal.R;
 import com.apps.seanc.nfcwriterpal.Tools.DialogBoxHandler;
 import com.apps.seanc.nfcwriterpal.Tools.NdefRecordParcel;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,10 +46,13 @@ public class WriteActivity extends AppCompatActivity
 
     private ListView recordsToWriteList;
     private Button addMessageBtn, removeBtn, writeBtn;
+    private TextView msgSize, tagSize;
     private String TAG = RecordSelection.class.getName();
     private List<NdefRecord> recordList;
     private AlertDialog writeDialog;
     private WriteListAdapter writeListAdapter;
+
+    private int msgSizeVal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,29 +78,37 @@ public class WriteActivity extends AppCompatActivity
         addMessageBtn = (Button) findViewById(R.id.write_btn_new_msg);
         writeBtn = (Button) findViewById(R.id.write_btn_write);
         removeBtn = (Button) findViewById(R.id.write_btn_remove);
+
+        msgSize = (TextView) findViewById(R.id.write_tv_msg_size);
+        tagSize = (TextView) findViewById(R.id.write_tv_tag_size);
         recordList = new ArrayList<NdefRecord>();
+
+        msgSizeVal = 0;
+        msgSize.setText(msgSizeVal + " " + getString(R.string.bytes));
+        tagSize.setText(getString(R.string.scan_tag));
 
         setOnClickListeners();
     }
 
     @Override
-    protected void onNewIntent(Intent intent){
+    protected void onNewIntent(Intent intent) {
         Log.d(TAG, "onNewIntent");
-        if(writeDialog!=null) {
-            if (writeDialog.isShowing()) {
-                if (NfcAdapter.ACTION_TAG_DISCOVERED.equals(intent.getAction())) {
-                    Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
-                    Ndef nfcTag = Ndef.get(tag);
+        if (NfcAdapter.ACTION_TAG_DISCOVERED.equals(intent.getAction())) {
+
+            Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
+            Ndef nfcTag = Ndef.get(tag);
+            if (writeDialog != null) {
+                if (writeDialog.isShowing()) {
                     NdefRecord[] ndefRecords = recordList.toArray(new NdefRecord[0]);
                     NdefMessage ndefMessage = new NdefMessage(ndefRecords);
                     try {
                         if (!nfcTag.isWritable()) {
-
-                            Log.d(TAG, "Tag is not writeable");
+                            writeDialog.dismiss();
+                            Toast.makeText(WriteActivity.this, getString(R.string.format_not_writable), Toast.LENGTH_LONG).show();
 
                         } else if (nfcTag.getMaxSize() < ndefMessage.toByteArray().length) {
-
-                            Log.d(TAG, "Tag size is too small, have " + nfcTag.getMaxSize() + ", need " + ndefMessage.toByteArray().length);
+                            writeDialog.dismiss();
+                            Toast.makeText(WriteActivity.this, getString(R.string.write_too_small) + "\n" + getString(R.string.write_available) + " " + nfcTag.getMaxSize() + " " + getString(R.string.write_need) + ndefMessage.toByteArray().length, Toast.LENGTH_LONG).show();
 
                         } else {
 
@@ -111,7 +125,23 @@ public class WriteActivity extends AppCompatActivity
                         Toast.makeText(WriteActivity.this, "Message write failed!", Toast.LENGTH_LONG).show();
                         Log.d(TAG, e.toString());
                     }
+                } else {
+
+                    try {
+                        tagSize.setText(nfcTag.getMaxSize() + " " + getString(R.string.bytes));
+                    } catch (Exception e) {
+                        tagSize.setText(getString(R.string.write_not_writable));
+                    }
+
                 }
+            }else {
+
+                try {
+                    tagSize.setText(nfcTag.getMaxSize() + " " + getString(R.string.bytes));
+                } catch (Exception e) {
+                    tagSize.setText(getString(R.string.write_not_writable));
+                }
+
             }
         }
     }
@@ -180,28 +210,31 @@ public class WriteActivity extends AppCompatActivity
                 recordList = new ArrayList<NdefRecord>();
                 writeListAdapter = new WriteListAdapter(WriteActivity.this, R.layout.snippet_write_list, recordList);
                 recordsToWriteList.setAdapter(writeListAdapter);
+                msgSizeVal = 0;
+                msgSize.setText(msgSizeVal + " " + getString(R.string.bytes));
             }
         });
     }
 
-    @Override //collects any data sent from the settings screen and applies it accordingly
+    @Override //collects any data sent from the record selection screen and adds it to the record list
     protected void onActivityResult(int requestCode, int resultCode, Intent resultIntent){
         super.onActivityResult(requestCode, resultCode, resultIntent);
-
         if(resultCode != 0) {
-
             switch (requestCode) {
                 case (1): {
                     if (resultIntent.hasExtra("ndefRecord")) {
                         Log.d(TAG, "NdefRecord parcel Found");
+
                         NdefRecordParcel ndefRecordParcel = resultIntent.getParcelableExtra("ndefRecord");
+
                         NdefRecord record = ndefRecordParcel.getRecord();
+                        msgSizeVal+=record.toByteArray().length;
+                        msgSize.setText(msgSizeVal + " " + getString(R.string.bytes));
                         recordList.add(record);
 
                         writeListAdapter = new WriteListAdapter(WriteActivity.this, R.layout.snippet_write_list, recordList);
                         recordsToWriteList.setAdapter(writeListAdapter);
 
-                        Log.d(TAG, "Write status not 0");
                     }
                     break;
                 }

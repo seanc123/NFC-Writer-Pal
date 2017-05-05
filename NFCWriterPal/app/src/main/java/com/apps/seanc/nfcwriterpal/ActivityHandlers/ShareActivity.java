@@ -46,13 +46,13 @@ public class ShareActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 try {
-                    Intent i = new Intent(Intent.ACTION_SEND);
-                    i.setType("text/plain");
-                    i.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
-                    String sAux = "\nLet me recommend you this application\n\n";
-                    sAux = sAux + "https://play.google.com/store/apps/details?id=Orion.Soft \n\n";
-                    i.putExtra(Intent.EXTRA_TEXT, sAux);
-                    startActivity(Intent.createChooser(i, "choose one"));
+                    Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                    shareIntent.setType("text/plain");
+                    shareIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
+                    String shareString = "\nLet me recommend you this application\n\n";
+                    shareString = shareString + "https://play.google.com/store/apps/details?id=com.apps.seanc.nfcwriterpal \n\n";
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, shareString);
+                    startActivity(Intent.createChooser(shareIntent, "Choose One"));
                 } catch(Exception e) {
                     Log.d(TAG, e.toString());
                 }

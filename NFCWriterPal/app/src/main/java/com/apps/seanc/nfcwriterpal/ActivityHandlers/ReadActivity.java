@@ -95,10 +95,12 @@ public class ReadActivity extends AppCompatActivity
         Log.d(TAG, "onNewIntent");
         tapDialog.dismiss();
         vibrate();
+
         if(NfcAdapter.ACTION_TAG_DISCOVERED.equals(intent.getAction())){
-            ndefMessageSize = 0;
             Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
             Ndef nfcTag = Ndef.get(tag);
+
+            ndefMessageSize = 0;
             try{
                 nfcTag.connect();
                 Log.d(TAG, "CONNECTED TO TAG");
@@ -124,6 +126,8 @@ public class ReadActivity extends AppCompatActivity
 
 
             Parcelable[] messages = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
+
+
             if (messages != null) {
                 Log.d(TAG, "Found " + messages.length + " NDEF messages");
                 tagMessages.setText(String.format(Locale.getDefault(), "%d", messages.length));
@@ -176,7 +180,7 @@ public class ReadActivity extends AppCompatActivity
     //ForeGround mode gives the current active application priority for reading scanned tags
     public void enableForeGroundMode(){
         Log.d(TAG, "enableForeGroundMode");
-        IntentFilter tagDetected = new IntentFilter(NfcAdapter.ACTION_TAG_DISCOVERED); //Filter for finding tags
+        IntentFilter tagDetected = new IntentFilter(NfcAdapter.ACTION_TAG_DISCOVERED); //Filter for NFC Intents
         IntentFilter[] writeTagFilters = new IntentFilter[] {tagDetected};
         nfcAdpt.enableForegroundDispatch(this, nfcPendingIntent, writeTagFilters,null);
     }
@@ -211,28 +215,8 @@ public class ReadActivity extends AppCompatActivity
             recordAdapter = new RecordAdapter(ReadActivity.this, R.layout.snippet_record_list, records);
             recordListNS.setAdapter(recordAdapter);
             tagRecords.setText(String.format(Locale.getDefault(), "%d", records.size()));
-            iterateNdefMessages(records);
         } catch (Exception e){
             Log.d(TAG, "Problem parsing message ", e);
-        }
-    }
-
-    //Iterates through each Ndef record and prints out the type of record that it is
-    private void iterateNdefMessages(List<Record> records){
-        for(int k = 0; k < records.size(); k++){
-            Record record = records.get(k);
-
-            if(record instanceof AndroidApplicationRecord){
-                Log.d(TAG, "APPLICATION RECORD FOUND");
-                AndroidApplicationRecord aar = (AndroidApplicationRecord) record;
-                Log.d(TAG, "Package name: "+aar.getPackageName());
-            }
-            else if (record instanceof TextRecord){
-                Log.d(TAG, "TEXT RECORD FOUND");
-                TextRecord tr = (TextRecord) record;
-                Log.d(TAG, "Text: "+tr.getText());
-            }
-
         }
     }
 

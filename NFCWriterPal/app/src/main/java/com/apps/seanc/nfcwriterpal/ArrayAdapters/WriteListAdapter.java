@@ -85,7 +85,7 @@ public class WriteListAdapter extends ArrayAdapter<NdefRecord> {
             Log.d(TAG, e.toString());
         }
 
-        if (null != record) {
+        if (record != null) {
             recordType = (TextView) view.findViewById(R.id.snippet_w_type);
             recordSize = (TextView) view.findViewById(R.id.snippet_w_size);
             varOne = (TextView) view.findViewById(R.id.snippet_w_var_one);
@@ -96,15 +96,12 @@ public class WriteListAdapter extends ArrayAdapter<NdefRecord> {
             varThreeHeader = (TextView) view.findViewById(R.id.snippet_w_var_three_header);
             writeTypeImage = (ImageView) view.findViewById((R.id.snippet_w_iv_type_image)) ;
 
-            recordSize.setText(Integer.toString(record.toByteArray().length) + " Bytes");
+            recordSize.setText(Integer.toString(record.toByteArray().length) + " " + context.getString(R.string.bytes));
             recordType.setText(ndefToolRecord.getClass().getSimpleName());
 
-            if(ndefToolRecord != null) {
-                if (ndefToolRecord instanceof AndroidApplicationRecord) {
-                    Log.d(TAG, "APPLICATION RECORD FOUND");
+            if (ndefToolRecord instanceof AndroidApplicationRecord) {
                     recordType.setText(ndefToolRecord.getClass().getSimpleName());
                     AndroidApplicationRecord aar = (AndroidApplicationRecord) ndefToolRecord;
-                    Log.d(TAG, "Package name: " + aar.getPackageName());
                     try {
                         ApplicationInfo app = context.getPackageManager().getApplicationInfo(aar.getPackageName(), 0);
 
@@ -120,33 +117,31 @@ public class WriteListAdapter extends ArrayAdapter<NdefRecord> {
                         varThreeHeader.setVisibility(View.GONE);
 
                     } catch (PackageManager.NameNotFoundException e) {
-                        Toast toast = Toast.makeText(context, "error in getting icon", Toast.LENGTH_SHORT);
+                        Toast toast = Toast.makeText(context, context.getString(R.string.error_loading_icon), Toast.LENGTH_SHORT);
                         toast.show();
                         e.printStackTrace();
                     }
 
-                } else if (ndefToolRecord instanceof UriRecord){
+            } else if (ndefToolRecord instanceof UriRecord){
 
-                    Log.d(TAG, "Uri Record Found");
-                    setSnippetFields(ndefToolRecord);
+                setSnippetFields(ndefToolRecord);
 
-                } else if (ndefToolRecord instanceof MimeRecord){
-                    recordType.setText(ndefToolRecord.getClass().getSimpleName());
+            } else if (ndefToolRecord instanceof MimeRecord){
+                recordType.setText(ndefToolRecord.getClass().getSimpleName());
 
-                    String payloadString = new String(record.getPayload());
-                    Log.d(TAG, "Payload = " + record.getPayload().toString());
-                    varOneHeader.setText("Payload");
-                    varOne.setText(payloadString);
+                String payloadString = new String(record.getPayload());
+
+                writeTypeImage.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_house_icon));
+                varOneHeader.setText(context.getString(R.string.payload));
+                varOne.setText(payloadString);
 
 
-                    varTwo.setVisibility(View.GONE);
-                    varThree.setVisibility(View.GONE);
-                    varTwoHeader.setVisibility(View.GONE);
-                    varThreeHeader.setVisibility(View.GONE);
+                varTwo.setVisibility(View.GONE);
+                varThree.setVisibility(View.GONE);
+                varTwoHeader.setVisibility(View.GONE);
+                varThreeHeader.setVisibility(View.GONE);
 
-                }
             }
-
         }
         return view;
     }
