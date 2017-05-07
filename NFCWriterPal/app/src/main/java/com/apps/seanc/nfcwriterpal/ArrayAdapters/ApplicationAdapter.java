@@ -2,6 +2,8 @@ package com.apps.seanc.nfcwriterpal.ArrayAdapters;
 
 /**
  * Created by seanc on 24/03/2017.
+ *
+ * This array adapter is used for populating a ListView with an applications information
  */
 
 import java.util.List;

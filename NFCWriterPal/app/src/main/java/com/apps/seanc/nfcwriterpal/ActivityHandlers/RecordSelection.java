@@ -34,6 +34,14 @@ public class RecordSelection extends AppCompatActivity
 
     private DialogBoxHandler dialogBoxHandler;
 
+/*
+ * Created by seanc on 20/04/2017.
+ *
+ *  This class is used for providing the user with the various NdefRecord that can be create by this app
+ *  When a user selects an option, a dialog is created and the data passed to this activity from the
+ *  dialog determines what the Record will do
+ *
+ */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,10 +146,12 @@ public class RecordSelection extends AppCompatActivity
 
     }
 
+    // Called form a dialog when the option selected will be a UriRecord
     public void setUriString(String uri){
         uriString = uri;
     }
 
+    // Called form a dialog when the option selected will be a MimeRecord
     public void setMimeString(String mime){
         mimeString = mime;
     }
@@ -150,6 +160,8 @@ public class RecordSelection extends AppCompatActivity
         this.appInfo = appInfo;
     }
 
+    // Called by a dialog when the user is finished inputting data regarding the record.
+    // The argument passed into this method notifies this class what type of record is to be created
     public void returnWithResult(int recordType){
         switch (recordType) {
             case 1:

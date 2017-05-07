@@ -30,6 +30,8 @@ import java.util.List;
 
 /**
  * Created by seanc on 25/04/2017.
+ *
+ * This array adapter populates the ListView with information on the records that are to be written
  */
 
 public class WriteListAdapter extends ArrayAdapter<NdefRecord> {
@@ -146,7 +148,7 @@ public class WriteListAdapter extends ArrayAdapter<NdefRecord> {
         return view;
     }
 
-
+    // Identifies what type of uri the NdefRecord passed into it is and populates the ListView accordingly
     private void setSnippetFields(Record ndefToolRecord){
 
         UriRecord uriRecord = (UriRecord) ndefToolRecord;

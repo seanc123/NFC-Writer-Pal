@@ -28,6 +28,15 @@ import android.widget.TextView;
 import com.apps.seanc.nfcwriterpal.R;
 import com.apps.seanc.nfcwriterpal.Tools.DialogBoxHandler;
 
+/**
+ * Created by seanc on 28/04/2017.
+ *
+ * This class provides the logic for the format activity.
+ * The format activity provides users with option to format a tag to Ndef format or
+ * to wipe the tag
+ *
+ */
+
 public class FormatActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 

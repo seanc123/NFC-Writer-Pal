@@ -1,26 +1,7 @@
 package com.apps.seanc.nfcwriterpal.ActivityHandlers;
 
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-
-import android.nfc.NdefMessage;
-import android.nfc.NdefRecord;
-import android.nfc.NfcAdapter;
-
-import org.ndeftools.Message;
-import org.ndeftools.Record;
-
-import android.nfc.Tag;
-import android.nfc.tech.Ndef;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.os.Vibrator;
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.util.Log;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -32,6 +13,13 @@ import android.view.View;
 import android.view.MenuItem;
 import android.widget.Button;
 import com.apps.seanc.nfcwriterpal.R;
+
+/*
+ * Created by seanc on 12/02/2017
+ *
+ * This class is used for providing the logic of the launcher activity for this application.
+ *
+ */
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -106,6 +94,7 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    // Sets the onClickListeners for each of the buttons on the main activity
     private void setOnClickListeners(){
 
         writeButton.setOnClickListener(new View.OnClickListener()  {

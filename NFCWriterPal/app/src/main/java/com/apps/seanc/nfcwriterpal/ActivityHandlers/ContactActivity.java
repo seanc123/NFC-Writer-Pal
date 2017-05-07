@@ -3,8 +3,6 @@ package com.apps.seanc.nfcwriterpal.ActivityHandlers;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,11 +10,18 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
 import com.apps.seanc.nfcwriterpal.R;
+
+/**
+ * Created by seanc on 26/04/2017.
+ *
+ * This class provides the logic for the contact activity.
+ * The contact activity provides users with a number of options for providing feedback on the app.
+ *
+ */
 
 public class ContactActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -87,6 +92,10 @@ public class ContactActivity extends AppCompatActivity
         return true;
     }
 
+
+    // Sets onClickListeners for the buttons present in the contact activity
+    // For each button an email intent is created with a subject referencing the
+    // reason the getting in contact
     public void setOnClickListeners(){
         bugButton.setOnClickListener(new View.OnClickListener() {
             @Override

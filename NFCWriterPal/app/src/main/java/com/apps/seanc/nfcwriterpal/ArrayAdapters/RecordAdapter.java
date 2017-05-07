@@ -16,6 +16,9 @@ import java.util.List;
 
 /**
  * Created by seanc on 30/03/2017.
+ *
+ * This array adapter is used for populating a ListView with information regarding the records read
+ * from any tags scanned in the Read activity
  */
 
 

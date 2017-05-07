@@ -12,6 +12,15 @@ import android.widget.Toast;
 import com.apps.seanc.nfcwriterpal.R;
 import com.apps.seanc.nfcwriterpal.Tools.HttpController;
 
+/**
+ * Created by seanc on 20/04/2017.
+ *
+ * This class is used when a mime type application/com.apps.seanc.nfcwriterpal is detected.
+ * When  this activity is started via an NFC intent of this type it retrieves the payload and passes it to the
+ * controller to create a http request.
+ *
+ */
+
 public class HMSManagerActivity extends Activity {
 
 
@@ -50,11 +59,6 @@ public class HMSManagerActivity extends Activity {
 
                 Log.d(TAG, "Running Ok Http");
                 controller.okHttp(payloadString);
-
-                /*Log.d(TAG, "Running Apache Http");
-                controller.apacheHttp(payloadString);*/
-                /*Log.d(TAG, "Running timeout task");
-                controller.timeoutHttp(payloadString);*/
 
                 this.finishAffinity();
             } catch(Exception e){

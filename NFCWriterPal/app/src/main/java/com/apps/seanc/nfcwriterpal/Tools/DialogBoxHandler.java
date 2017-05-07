@@ -32,6 +32,8 @@ import java.util.List;
 
 /**
  * Created by seanc on 22/04/2017.
+ *
+ * Dialog Factory Class
  */
 
 public class DialogBoxHandler extends ListActivity{

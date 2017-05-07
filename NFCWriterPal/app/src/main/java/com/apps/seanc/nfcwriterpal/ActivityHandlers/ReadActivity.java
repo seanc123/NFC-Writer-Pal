@@ -20,7 +20,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
@@ -32,11 +31,16 @@ import com.apps.seanc.nfcwriterpal.Tools.DialogBoxHandler;
 
 import org.ndeftools.Message;
 import org.ndeftools.Record;
-import org.ndeftools.externaltype.AndroidApplicationRecord;
-import org.ndeftools.wellknown.TextRecord;
 
 import java.util.List;
 import java.util.Locale;
+
+/*
+ * Created by seanc on 16/02/2017
+ *
+ * This class is used for providing the logic of the read activity for this application.
+ *
+ */
 
 public class ReadActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -89,7 +93,8 @@ public class ReadActivity extends AppCompatActivity
         tapDialog.show();
     }
 
-    //Write bool expression for if in writeMode
+
+    // The onNewIntent method handles what is to be done when a new NFC intent is received
     @Override
     protected void onNewIntent(Intent intent){
         Log.d(TAG, "onNewIntent");
@@ -259,6 +264,7 @@ public class ReadActivity extends AppCompatActivity
     }
 
 
+    // Removes the android.nfc.tech prefix on the tech types supported on any tags discovered
     private String[] techConcat(String[] techList){
         String techPrefix = "\\bandroid\\b.\\bnfc\\b.\\btech\\b.";
         for(int i = 0; i < techList.length; i++){

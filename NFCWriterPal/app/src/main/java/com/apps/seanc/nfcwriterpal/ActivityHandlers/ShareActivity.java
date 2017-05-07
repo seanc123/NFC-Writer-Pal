@@ -2,8 +2,6 @@ package com.apps.seanc.nfcwriterpal.ActivityHandlers;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -12,11 +10,19 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
 import com.apps.seanc.nfcwriterpal.R;
+
+
+/*
+ * Created by seanc on 23/04/2017.
+ *
+ *  This class is used for providing the user with the option to share this app amongst
+ *  whoever they desire using a variety of installed apps
+ *
+ */
 
 public class ShareActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -42,6 +48,8 @@ public class ShareActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         shareButton = (Button) findViewById(R.id.share_btn_share);
+
+        // An intent is built with a link to this apps Play Store listing
         shareButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

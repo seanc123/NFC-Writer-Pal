@@ -32,10 +32,16 @@ import com.apps.seanc.nfcwriterpal.R;
 import com.apps.seanc.nfcwriterpal.Tools.DialogBoxHandler;
 import com.apps.seanc.nfcwriterpal.Tools.NdefRecordParcel;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
+
+/*
+ * Created by seanc on 25/04/2017.
+ *
+ *  This class is used for for launching the record selection activity and passing all the records
+ *  retrieved back from it into an NdefMessage to be written to a tag
+ *
+ */
 
 public class WriteActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -174,6 +180,7 @@ public class WriteActivity extends AppCompatActivity
         return true;
     }
 
+    // Sets the onClickListeners for the buttons on the UI
     private void setOnClickListeners() {
 
         addMessageBtn.setOnClickListener(new View.OnClickListener() {
